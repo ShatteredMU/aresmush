@@ -33,5 +33,9 @@ module AresMUSH
       chars_looking_for_rp.map { |c| { name: c.name, type_maker: type_marker(c) } }
     end
 
+    def self.char_names
+      chars_looking_for_rp.map { |c| c.name }
+    end
+
   end
 end
