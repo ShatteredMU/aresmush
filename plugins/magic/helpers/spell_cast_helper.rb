@@ -82,8 +82,9 @@ module AresMUSH
           end
         end
         
-        #target_client  = Login.find_client(target)
-        #Login.emit_if_logged_in target, messages
+        messages = messages.uniq
+        target_client  = Login.find_client(target)
+        Login.emit_if_logged_in target, messages
 
       end
 
