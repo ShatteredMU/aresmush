@@ -14,7 +14,7 @@ module AresMUSH
     #    about performance. Avoid intensive database queries here.
     def self.custom_sidebar_data(viewer)
       return {
-        looking_for_rp: LookingForRp.web_list,
+        looking_for_rp: LookingForRp.char_names,
       }
     end
   end
