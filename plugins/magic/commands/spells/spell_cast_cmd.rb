@@ -69,8 +69,10 @@ module AresMUSH
           if enactor.room.scene
             Scenes.add_to_scene(enactor.room.scene, msg)
           end
-          if self.has_target == true && (Login.is_online?(target)) && (!self.scene || target.room != self.scene.room)
-            client.emit msg
+          targets.each do |char|
+            if self.has_target == true && (Login.is_online?(char)) && (!self.scene || char.room != self.scene.room)
+              client.emit msg
+            end
           end
         end
         # puts "~~~~MAGIC ENERGY END: #{enactor.magic_energy}"
