@@ -5,8 +5,14 @@ module AresMUSH
       case field_type
 
       when 'lookingforrp'
-        flag = char.looking_for_rp
-        flag ? "%xg+%xn" : ""
+        looking_for_rp = char.looking_for_rp
+        case char.looking_for_rp_type
+          when "scene"
+            flag = "%xgRP%xn"
+          when "text"
+            flag = "%xmTXT%xn"
+        end
+        looking_for_rp ? flag : ""
 
       when 'bonded'
         char.bonded&.name

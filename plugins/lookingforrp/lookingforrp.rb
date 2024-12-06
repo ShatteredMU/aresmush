@@ -14,7 +14,16 @@ module AresMUSH
     def self.get_cmd_handler(client, cmd, enactor)
       case cmd.root
       when 'lookingforrp'
-        return LookingForRpCommand
+        case cmd.switch
+        when "off"
+          return LookingForRpOffCommand
+        when "text"
+          return LookingForRpTextCommand
+        when nil
+          return LookingForRpCommand
+        end
+
+
       end
       nil
     end
