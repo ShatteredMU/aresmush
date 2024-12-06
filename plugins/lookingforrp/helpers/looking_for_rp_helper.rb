@@ -1,11 +1,11 @@
 module AresMUSH
   module LookingForRp
 
-    def self.set(char, duration)
+    def self.set(char, duration, type="scene")
       end_at = LookingForRp.end_at(duration)
-      puts end_at
       char.update(looking_for_rp_expires_at: end_at)
       char.update(looking_for_rp: true)
+      char.update(looking_for_rp_type: type)
     end
 
     def self.end_at(duration)

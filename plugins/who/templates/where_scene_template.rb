@@ -42,9 +42,15 @@ module AresMUSH
       def name(char, in_room = true)
         status  = Website.activity_status(char)
         name =  Demographics.name_and_nickname(char)
-        char.looking_for_rp ? name = " #{name} %xg+%xn" : name
 
-        if (status == 'game-inactive')
+        if char.looking_for_rp
+          case char.looking_for_rp_type
+            when "scene"
+              name = "%xg+%xn#{name}"
+            when "text"
+              name = "%xm#%xn#{name}"
+          end
+        elsif (status == 'game-inactive')
           name = "%xh%xx#{name}%xn"
         elsif (status == 'web-inactive')
           name = "%xh%xx#{name}#{Website.web_char_marker}%xn"
