@@ -6,3 +6,5 @@ lookingforrp:
     - 15
     - 30
     - 45
+  shortcuts:
+    lookingforrp/txt: lookingforrp/text
