@@ -82,10 +82,10 @@ module AresMUSH
           end
         end
         
-        messages = messages.uniq
-        target_client  = Login.find_client(target)
-        Login.emit_if_logged_in target, messages
-
+        if target.room != caster.room
+          target_client  = Login.find_client(target)
+          Login.emit_if_logged_in target, messages
+        end
       end
 
       if using_potion
