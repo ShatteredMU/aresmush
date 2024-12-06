@@ -20,8 +20,17 @@ module AresMUSH
       Chargen.approved_chars.select { |c| c.looking_for_rp == true }
     end
 
-    def self.char_names
-      chars_looking_for_rp.map { |c| c.name }
+    def self.type_marker(char)
+      case char.looking_for_rp_type
+      when "scene"
+        return ""
+      when "text"
+        return "#"
+      end
+    end
+
+    def self.web_list
+      chars_looking_for_rp.map { |c| { name: c.name, type_maker: type_marker(c) } }
     end
 
   end
