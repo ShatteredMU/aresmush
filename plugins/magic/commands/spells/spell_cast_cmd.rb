@@ -74,14 +74,12 @@ module AresMUSH
           end
           # For each target, evaluate conditions and emit accordingly.
           scene = Scene[self.scene_id]
-          enactor.room.emit print_names
+          
           targets.each do |target|
             if self.has_target == true && (Login.is_online?(target)) && (target.room != enactor.room)
               #!self.scene || 
-              Magic.cast_noncombat_spell(enactor.name, targets, spell, mod, result[:result])
-              enactor.room.emit target_name
-              enactor.room.emit target.room
-              enactor.room.emit enactor.room
+              Magic.cast_noncombat_spell(enactor.name, targets, spell, mod, result)
+              
             end
           end
         end
