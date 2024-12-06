@@ -64,11 +64,17 @@ module AresMUSH
         #   message.concat [Magic.get_fatigue_level(enactor)[:msg]]
         # end
 
+        # Loop through messages and emit accordingly.
         messages.each do |msg|
+          # Always emit to the room the enactor is in.
           enactor.room.emit msg
+          # If the room that the enactor is in is a scene, add the emit to that scene.
           if enactor.room.scene
             Scenes.add_to_scene(enactor.room.scene, msg)
           end
+          # For each target, evaluate conditions and emit accordingly.
+          scene = Scene[self.scene_id]
+          
           targets.each do |char|
             if self.has_target == true && (Login.is_online?(char)) && (!self.scene || char.room != self.scene.room)
               client.emit msg
