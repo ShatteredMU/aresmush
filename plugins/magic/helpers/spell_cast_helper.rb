@@ -109,6 +109,8 @@ module AresMUSH
       messages = messages.uniq
 
       return messages
+      target_client  = Login.find_client(target)
+      Login.emit_if_logged_in target, messages
     end
 
     def self.cast_shield(caster_name, target_char_or_combatant, spell, rounds, result, is_potion = false)

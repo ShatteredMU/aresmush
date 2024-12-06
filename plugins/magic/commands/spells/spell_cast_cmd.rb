@@ -77,7 +77,7 @@ module AresMUSH
 
           targets.each do |char|
             if self.has_target == true && (Login.is_online?(char)) && (!self.scene || char.room != self.scene.room)
-              client.emit msg
+              Magic.cast_noncombat_spell(enactor.name, targets, spell, mod, result[:result])
             end
           end
         end
