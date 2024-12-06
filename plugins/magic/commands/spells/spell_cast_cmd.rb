@@ -3,7 +3,7 @@ module AresMUSH
     class SpellCastCmd
     #spell/cast <spell>
       include CommandHandler
-      attr_accessor :name, :spell, :spell_list, :has_target, :args, :mod, :targets, :target_name_string, :target_name
+      attr_accessor :name, :spell, :spell_list, :has_target, :args, :mod, :targets, :target_name_string, :target_name, :scene_id, :scene
 
       def parse_args
         args = cmd.parse_args(/(?<spell>[^+\-\/]+[^+\-\/\s])\s*(?<mod>[+\-]\s*\d+)?(\/(?<target>.*))?/)
@@ -74,7 +74,7 @@ module AresMUSH
           end
           # For each target, evaluate conditions and emit accordingly.
           scene = Scene[self.scene_id]
-          
+
           targets.each do |char|
             if self.has_target == true && (Login.is_online?(char)) && (!self.scene || char.room != self.scene.room)
               client.emit msg
