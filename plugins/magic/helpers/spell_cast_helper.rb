@@ -44,6 +44,9 @@ module AresMUSH
       #Used for spell/npc when npcs cast on themselves - does nothing but emit success
       npc_msg = t('magic.casts_spell', :name => caster_name, :spell => spell_name, :mod => mod, :succeeds => success)
       return messages.concat [npc_msg] if (targets == "npc_target")
+      
+      #Get some info
+      caster.room.emit targets
 
       #Run all the spell or potion effects
       targets.each do |target|
