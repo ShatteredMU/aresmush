@@ -73,15 +73,15 @@ module AresMUSH
             Scenes.add_to_scene(enactor.room.scene, msg)
           end
           # For each target, evaluate conditions and emit accordingly.
-          scene = Scene[self.scene_id]
+          #scene = Scene[self.scene_id]
           
-          targets.each do |target|
-            if self.has_target == true && (Login.is_online?(target)) && (target.room != enactor.room)
+          #targets.each do |target|
+          #  if self.has_target == true && (Login.is_online?(target)) && (target.room != enactor.room)
               #!self.scene || 
-              msg
+          #    msg
               
-            end
-          end
+          #  end
+          #end
         end
         # puts "~~~~MAGIC ENERGY END: #{enactor.magic_energy}"
       end
