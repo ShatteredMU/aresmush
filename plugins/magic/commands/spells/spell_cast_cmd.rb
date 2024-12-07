@@ -3,7 +3,7 @@ module AresMUSH
     class SpellCastCmd
     #spell/cast <spell>
       include CommandHandler
-      attr_accessor :name, :spell, :spell_list, :has_target, :args, :mod, :targets, :target_name_string, :target_name, :scene_id, :scene
+      attr_accessor :name, :spell, :spell_list, :has_target, :args, :mod, :targets, :target_name_string, :target_name
 
       def parse_args
         args = cmd.parse_args(/(?<spell>[^+\-\/]+[^+\-\/\s])\s*(?<mod>[+\-]\s*\d+)?(\/(?<target>.*))?/)
@@ -64,24 +64,11 @@ module AresMUSH
         #   message.concat [Magic.get_fatigue_level(enactor)[:msg]]
         # end
 
-        # Loop through messages and emit accordingly.
         messages.each do |msg|
-          # Always emit to the room the enactor is in.
           enactor.room.emit msg
-          # If the room that the enactor is in is a scene, add the emit to that scene.
           if enactor.room.scene
             Scenes.add_to_scene(enactor.room.scene, msg)
           end
-          # For each target, evaluate conditions and emit accordingly.
-          #scene = Scene[self.scene_id]
-          
-          #targets.each do |target|
-          #  if self.has_target == true && (Login.is_online?(target)) && (target.room != enactor.room)
-              #!self.scene || 
-          #    msg
-              
-          #  end
-          #end
         end
         # puts "~~~~MAGIC ENERGY END: #{enactor.magic_energy}"
       end
