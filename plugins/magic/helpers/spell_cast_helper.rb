@@ -81,10 +81,10 @@ module AresMUSH
             messages.concat message
           end
         end
-        
+        #check to see what happens in the caster's room
+        caster.room.emit messages
         if target.room != caster.room
           target_client  = Login.find_client(target)
-          messages = t(messages)
           Login.emit_if_logged_in target, messages
         end
       end
