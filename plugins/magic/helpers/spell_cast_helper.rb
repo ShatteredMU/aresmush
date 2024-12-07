@@ -81,11 +81,11 @@ module AresMUSH
             messages.concat message
           end
         end
-        #check to see what happens in the caster's room
+        #Add handling to check if the target is remote from the caster and emit to them if yes
         messages.each do |msg|
           if target.room != caster.room
             target_client  = Login.find_client(target)
-            Login.emit_if_logged_in target, msg
+            Login.emit_if_logged_in target, "From afar," + msg
           end
         end
       end
