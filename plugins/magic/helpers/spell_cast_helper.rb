@@ -82,10 +82,10 @@ module AresMUSH
           end
         end
         #check to see what happens in the caster's room
-        caster.room.emit messages
+        messages.each do |msg|
         if target.room != caster.room
           target_client  = Login.find_client(target)
-          Login.emit_if_logged_in target, messages
+          Login.emit_if_logged_in target, msg
         end
       end
 
