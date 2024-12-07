@@ -44,9 +44,6 @@ module AresMUSH
       #Used for spell/npc when npcs cast on themselves - does nothing but emit success
       npc_msg = t('magic.casts_spell', :name => caster_name, :spell => spell_name, :mod => mod, :succeeds => success)
       return messages.concat [npc_msg] if (targets == "npc_target")
-      
-      #Get some info
-      caster.room.emit targets
 
       #Run all the spell or potion effects
       targets.each do |target|
@@ -87,8 +84,8 @@ module AresMUSH
         
         #Add handling to check if the target is remote from the caster and emit to them if yes
         messages.each do |msg|
-          if target.room != caster.room
-            target_client  = Login.find_client(target)
+          if target.room != caster.room && msg.include target.name
+            #target_client  = Login.find_client(target)
             Login.emit_if_logged_in target, "From afar, " + msg
           end
         end
