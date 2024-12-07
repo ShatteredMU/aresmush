@@ -84,7 +84,7 @@ module AresMUSH
         
         #Add handling to check if the target is remote from the caster and emit to them if yes
         messages.each do |msg|
-          if target.room != caster.room && msg.to_s.include? target.name.to_s
+          if target.room != caster.room && msg.to_s.include?(target.name)
             #target_client  = Login.find_client(target)
             Login.emit_if_logged_in target, "From afar, " + msg
           end
