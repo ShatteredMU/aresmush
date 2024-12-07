@@ -84,7 +84,8 @@ module AresMUSH
         
         if target.room != caster.room
           target_client  = Login.find_client(target)
-          Login.emit_if_logged_in target, messages.to_s
+          messages = t(messages)
+          Login.emit_if_logged_in target, messages
         end
       end
 
