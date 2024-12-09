@@ -81,8 +81,14 @@ module AresMUSH
             messages.concat message
           end
         end
-
-
+        
+        #Add handling to check if the target is remote from the caster and emit to them if yes
+        messages.each do |msg|
+          #Only emit message if it contains the target's name.
+          if target.room != caster.room && msg.to_s.include?(target.name)
+            Login.emit_ooc_if_logged_in target, "<OOC>%xn In another grid location, " + msg
+          end
+        end
       end
 
       if using_potion
@@ -109,6 +115,7 @@ module AresMUSH
       messages = messages.uniq
 
       return messages
+      
     end
 
     def self.cast_shield(caster_name, target_char_or_combatant, spell, rounds, result, is_potion = false)
