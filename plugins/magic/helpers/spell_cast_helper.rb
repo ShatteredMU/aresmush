@@ -86,7 +86,7 @@ module AresMUSH
         messages.each do |msg|
           #Only emit message if it contains the target's name.
           if target.room != caster.room && msg.to_s.include?(target.name)
-            Login.emit_ooc_if_logged_in target, "<OOC> In another grid location, %xn" + msg
+            Login.emit_ooc_if_logged_in target, "<OOC>%xn In another grid location, " + msg
           end
         end
       end
