@@ -87,7 +87,7 @@ module AresMUSH
       vistas = {}
       details = {}
       
-      if (matched_rooms.count == 1)
+      if (matched_rooms.count >= 1)
         room = matched_rooms.first
         if (room.is_temp_room?)
           description = location
