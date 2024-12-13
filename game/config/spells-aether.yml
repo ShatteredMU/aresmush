@@ -427,7 +427,7 @@ spells:
   Lightning Strike:
     available: true
     casting_time: 1 round
-    desc: A streak of powerful lightning plunges from the sky to strike a target, doing massive damage.
+    desc: Streaks of powerful lightning plunge from the sky to strike two targets, doing massive damage.
     effect: Damage
     level: 8
     line_of_sight: true
@@ -435,13 +435,13 @@ spells:
     name: Lightning Strike
     range: Long
     school: Aether
-    target_num: 1
+    target_num: 2
     weapon: Lightning Strike
   Suffocate:
     available: true
     casting_time: 1 round
     damage_type: Bypass
-    desc: "Draw the air from the lungs of a target, making it impossible for them to breathe. \n\nDoes not affect enemies who do not breathe air."
+    desc: "Draw the air from a small area, making it impossible for targets within it to breathe. \n\nDoes not affect enemies who do not breathe air."
     effect: Damage
     fs3_attack: true
     level: 8
@@ -449,7 +449,7 @@ spells:
     name: Suffocate
     range: Long
     school: Aether
-    target_num: 1
+    target_num: 2
     weapon: Suffocate
 #---------------
 # LEVEL 9
