@@ -96,7 +96,9 @@ module AresMUSH
     end
 
     def is_subdued?
-      self.subdued_by && self.subdued_by.is_subduing?(self)
+      #MAGIC CHANGES
+      self.subdued_by && (self.subdued_by.is_subduing?(self) || self.magic_stun)
+      #/Magic changes
     end
 
     def is_subduing?(target)
