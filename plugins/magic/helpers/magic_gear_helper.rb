@@ -95,8 +95,8 @@ module AresMUSH
         combatant.update(prior_ammo: prior_ammo)
       end
 
-      combatant.update(weapon_name: weapon)
       combatant.update(weapon_specials: specials ? specials.map { |s| s.titlecase }.uniq : [])
+      combatant.update(weapon_name: weapon)
       combatant.update(ammo: current_ammo)
       combatant.update(max_ammo: max_ammo)
 
