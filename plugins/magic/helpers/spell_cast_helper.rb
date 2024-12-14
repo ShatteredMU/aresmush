@@ -526,7 +526,7 @@ module AresMUSH
         return [ t('fs3combat.has_no_target', :name => caster_name) ] if !target
 
         margin = FS3Combat.determine_attack_margin(combatant, target, mod = 0, called_shot = nil, mount_hit = false, result)
-        combatant.log "#{caster_name} 's margin post 'determine attack margin' margin=#{margin}"
+        combatant.log "#{caster_name} 's margin post 'determine attack margin' margin=#{margin[:message]}"
         
         # Update recoil after determining the attack success but before returning out for a miss
         recoil = FS3Combat.weapon_stat(combatant.weapon, "recoil")
