@@ -396,20 +396,21 @@ en:
         rally_resolution_success: "%{name} successfully rallies %{target}."
 
         # ----------------------------
-        # SUBDUE AND ESCAPE
+        # SUBDUE AND ESCAPE - Stunning has its own emits elsewhere; escaping does not.
         # ----------------------------
 
         subdue_uses_melee: "You must use a melee weapon to subdue or stun."
-        subdue_action_msg_long: "%{name} will stun %{target} this turn."
-        subdue_action_msg_short: "Stun %{target}"
-        subdue_action_success: "%{name} successfully stuns %{target}."
-        subdue_action_failed: "%{name} tries to stun %{target} but FAILS."
+        subdue_action_msg_long: "%{name} will subdue %{target} this turn."
+        subdue_action_msg_short: "Subdue %{target}"
+        subdue_action_success: "%{name} successfully subdues %{target}."
+        subdue_action_failed: "%{name} tries to subdues %{target} but FAILS."
         not_subdued: "You are not subdued or stunned."
         escape_action_msg_long: "%{name} will try to escape from %{target} this turn."
         escape_action_msg_short: "Escape %{target}"
         escape_action_success: "%{name} escapes from %{target}."
         escape_action_failed: "%{name} tries to escape from %{target} but is still subdued or stunned."
         must_escape_first: "Subdued or stunned characters must escape first."
+        continues_subduing: "%{name} continues to subdue %{target}."
 
         # ----------------------------
         # AMMO / RELOAD
