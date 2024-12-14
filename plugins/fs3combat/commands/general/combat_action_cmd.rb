@@ -52,7 +52,7 @@ module AresMUSH
           FS3Combat.with_a_combatant(name, client, enactor) do |combat, combatant|
             if combatant.is_ko
               client.emit t('fs3combat.cannot_act_while_koed')
-            elsif ((combatant.is_subdued? || combatant.magic_stun) && self.combat_command != "escape")
+            elsif (combatant.is_subdued? && self.combat_command != "escape")
               client.emit_failure t('fs3combat.must_escape_first')
               next
             end
