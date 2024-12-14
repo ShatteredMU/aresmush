@@ -136,10 +136,7 @@ module AresMUSH
       gm_mod = combatant.initiative_mod
       roll = combatant.roll_ability(ability, weapon_mod + action_mod + luck_mod + combatant.total_damage_mod + gm_mod)
 
-      #temporarily removed until it can be fixed
-      #if combatant.associated_model.bonded
-      #  combatant.log "Total damage mod at start of turn: #{combatant.associated_model.name}=#{FS3Combat.total_damage_mod(combatant.associated_model)} + #{combatant.associated_model.bonded.name}=#{FS3Combat.total_damage_mod(combatant.associated_model.bonded)} / 2 = #{(FS3Combat.total_damage_mod(combatant.associated_model) + FS3Combat.total_damage_mod(mount)) / 2}"
-      #end
+      ExpandedMounts.total_mod_log("Total damage mod at start of turn", combatant) if combatant.bonded
 
       combatant.log "Initiative roll for #{combatant.name} ability=#{ability} action=#{action_mod} weapon=#{weapon_mod} luck=#{luck_mod} gm=#{gm_mod} roll=#{roll}"
 
