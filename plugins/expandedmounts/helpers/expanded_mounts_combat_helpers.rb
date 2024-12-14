@@ -2,6 +2,10 @@
 module AresMUSH
   module ExpandedMounts
 
+    def self.total_mod_log(message, combatant)
+      combatant.log "#{message}: #{combatant.associated_model.name}=#{FS3Combat.total_damage_mod(combatant.associated_model)} + #{combatant.bonded.name}=#{FS3Combat.total_damage_mod(combatant.bonded)} / 2 = #{(FS3Combat.total_damage_mod(combatant.associated_model) + FS3Combat.total_damage_mod(combatant.bonded)) / 2}"
+    end
+
     def self.mounted_names(combatant_or_mount)
       if combatant_or_mount.is_mount? && combatant_or_mount.rider
         return t('expandedmounts.combat_name', :combatant => combatant_or_mount.bonded.name, :mount => combatant_or_mount.name )

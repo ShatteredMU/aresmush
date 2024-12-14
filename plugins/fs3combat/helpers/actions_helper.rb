@@ -91,10 +91,7 @@ module AresMUSH
       puts "Checking for KO #{combatant.name}"
       return if (!combatant.freshly_damaged || combatant.is_ko || combatant.total_damage_mod > -1.0)
 
-      #temporarily removed until it can be fixed
-      #if combatant.associated_model.bonded
-      #  combatant.log "Total damage mod at KO roll: #{combatant.associated_model.name}=#{FS3Combat.total_damage_mod(combatant.associated_model)} + #{combatant.associated_model.bonded.name}=#{FS3Combat.total_damage_mod(combatant.associated_model.bonded)} / 2 = #{(FS3Combat.total_damage_mod(combatant.associated_model) + FS3Combat.total_damage_mod(mount)) / 2}"
-      #end
+      ExpandedMounts.total_mod_log("Total damage mod at KO roll", combatant) if combatant.bonded
 
       combatant.log "Checking for KO: #{combatant.name} | damaged=#{combatant.freshly_damaged} ko=#{combatant.is_ko} mod=#{combatant.total_damage_mod}"
 
