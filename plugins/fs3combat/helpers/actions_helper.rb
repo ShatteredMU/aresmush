@@ -56,7 +56,7 @@ module AresMUSH
         combatant.update(aim_target: nil)
       end
 
-      if (!combatant.is_subdued? && !combatant.magic_stun)
+      if (!combatant.is_subdued?)
         combatant.update(subdued_by: nil)
       end
 
