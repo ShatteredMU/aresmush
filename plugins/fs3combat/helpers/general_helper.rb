@@ -95,7 +95,11 @@ module AresMUSH
     end
     
     def self.emit_to_combatant(combatant, message, filter_for_screenreader = false)
-      char = combatant.character
+      if combatant.is_mount?
+        char = combatant.bonded
+      else
+        char = combatant.character
+      end
       return if !char
       
       client = Login.find_client(char)
@@ -132,12 +136,18 @@ module AresMUSH
       if (result.found?)
         return result.target
       end
-      
+      #EM Changes
+      result = ClassTargetFinder.find(name, Mount, enactor)
+      if (result.found?)
+        return result.target
+      end
+      #/EM Changes
+
       combatant = enactor.combatant
       if (!combatant)
         return nil
       end
-      
+
       return combatant.combat.find_named_thing(name)
     end
     
