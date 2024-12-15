@@ -5,6 +5,10 @@ module AresMUSH
       char.bonded.name if char.bonded
     end
 
+    def self.mount_gender(char)
+      char.bonded.gender if char.bonded
+    end
+    
     def self.expanded_mount_type(char)
       char.bonded.expanded_mount_type if char.bonded
     end
