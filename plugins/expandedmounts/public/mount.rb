@@ -50,6 +50,10 @@ module AresMUSH
       true
     end
 
+    def room
+      self.bonded.room
+    end
+
     ## MOUNT STATS & GEAR
     def default_weapon
       Global.read_config("expandedmounts", self.expanded_mount_type, "weapons" ).first
