@@ -43,9 +43,20 @@ module AresMUSH
       end
 
       #ENERGY RESTORE
+      #case cmd.root
+      #when "energyrestore"
+      #  return EnergyRestoreCmd
+      #end
+
+      #ENERGY REFUND
       case cmd.root
-      when "energyrestore"
-        return EnergyRestoreCmd
+      when "fatigue"
+        case cmd.switch
+        when "set"
+          return EnergyRestoreCmd
+        when "refund"
+          return FatigueRefundCmd
+        end
       end
 
       #ITEMS

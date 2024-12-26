@@ -20,6 +20,16 @@ module AresMUSH
       npc.update(magic_energy: new_energy)
     end
 
+    def self.refund_magic_energy(char_or_npc, spell, success)
+      char = char_or_npc
+      level = Global.read_config("spells", spell, "level")
+      spell_school = Global.read_config("spells", spell, "school")
+      cost = Global.read_config("magic", "energy_cost_by_level", level)
+      magic_energy = [(char.magic_energy + cost), 0].max
+      
+      char.update(magic_energy: magic_energy)
+    end
+
     def self.subtract_magic_energy(char_or_npc, spell, success)
       char = char_or_npc
       # puts  "Magic energy before subtraction: #{char.name} #{char.magic_energy}"
