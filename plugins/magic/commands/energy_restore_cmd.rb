@@ -7,7 +7,7 @@ module AresMUSH
 
         def parse_args
           args = cmd.parse_args(ArgParser.arg1_equals_arg2)
-          self.target = Combat.find_named_thing(args.arg1)
+          self.target = FS3Combat.find_named_thing(args.arg1)
           self.percent = trim_arg(args.arg2)
         end
   
