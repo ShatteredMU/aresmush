@@ -25,9 +25,7 @@ module AresMUSH
       level = Global.read_config("spells", spell, "level")
       spell_school = Global.read_config("spells", spell, "school")
       cost = Global.read_config("magic", "energy_cost_by_level", level)
-      if success == "fail"
-        then cost = cost/4
-      end
+      success == "fail" ? cost = cost/4 : cost = cost
       magic_energy = [(char.magic_energy + cost), 0].max
 
       char.update(magic_energy: magic_energy)
