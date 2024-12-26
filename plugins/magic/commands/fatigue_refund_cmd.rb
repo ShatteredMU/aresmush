@@ -14,6 +14,7 @@ module AresMUSH
   
         def check_errors
           return "You're not in combat." if !enactor.combat
+          
         end
   
         def handle
