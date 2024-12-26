@@ -12,8 +12,6 @@ module AresMUSH
         end
   
         def check_errors
-          return self.target
-          return self.percent
           return "You're not in combat." if !enactor.combat
           return "Please specify a number between 1 and 100 for mana percentage." if self.percent.integer? == false
           return "Please specify a number between 1 and 100 for mana percentage." if self.percent > 100
@@ -21,6 +19,8 @@ module AresMUSH
         end
   
         def handle
+          return self.target
+          return self.percent
           combat = enactor.combat
   
           if (combat.organizer != enactor)
