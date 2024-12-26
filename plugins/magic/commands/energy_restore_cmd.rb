@@ -8,9 +8,7 @@ module AresMUSH
         def parse_args
           args = cmd.parse_args(ArgParser.arg1_equals_arg2)
           self.target = Character.named(args.arg1)
-          self.percent = args.arg2.to_i
-          Login.emit_if_logged_in self.target
-          Login.emit_if_logged_in self.percent
+          self.percent = trim_arg(args.arg2)
         end
   
         def check_errors
