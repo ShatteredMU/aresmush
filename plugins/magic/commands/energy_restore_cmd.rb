@@ -3,7 +3,7 @@ module AresMUSH
       class EnergyRestoreCmd
         include CommandHandler
   
-        attr_accessor :target, :percent
+        attr_accessor :target_name, :percent, :target
 
         def parse_args
           args = cmd.parse_args(ArgParser.arg1_equals_arg2)
