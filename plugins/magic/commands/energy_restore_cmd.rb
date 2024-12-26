@@ -28,7 +28,7 @@ module AresMUSH
             return
           end
   
-          Magic.set_pc_energy(target, self.percent)
+          Magic.set_pc_energy(self.target, self.percent)
           
           client.emit_success "Mana restored."
   
