@@ -30,7 +30,7 @@ module AresMUSH
   
           Magic.set_pc_energy(self.target, self.percent)
           
-          client.emit_success "Mana restored."
+          client.emit_success t(self.target.name, "'s mana set to ", self.percent, "%.")
   
         end
       end
