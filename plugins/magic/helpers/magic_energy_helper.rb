@@ -8,10 +8,11 @@ module AresMUSH
     end
 
     def self.set_pc_energy(target, percent)
-      Global.logger.debug target
       Global.logger.debug percent
       char = target
       percentage = percent.to_i / 100
+      Global.logger.debug percentage
+      Global.logger.debug char.total_magic_energy
       new_magic_energy = char.total_magic_energy * percentage
       char.update(magic_energy: new_magic_energy)
       puts "Char #{char} #{char.name} #{char.magic_energy}"
