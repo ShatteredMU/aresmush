@@ -9,13 +9,13 @@ module AresMUSH
       end
 
       def handle
-
+        combat = enactor.combat
+        
         if (combat.organizer != enactor)
           client.emit_failure t('fs3combat.only_organizer_can_do')
           return
         end
-        
-        combat = enactor.combat
+
         combat.combatants.each do |c|
           puts c.name
           Magic.reset_magic_energy(c.associated_model)
