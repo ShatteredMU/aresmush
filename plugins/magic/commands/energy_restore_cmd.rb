@@ -26,8 +26,9 @@ module AresMUSH
             client.emit_failure t('fs3combat.only_organizer_can_do')
             return
           end
+          char = Magic.get_associated_model(self.target)
   
-          Magic.set_pc_energy(combat.combatant.associated_model, self.percent)
+          Magic.set_pc_energy(combatant.associated_model, self.percent)
           
           client.emit_success t('magic.fatigue_set', :name => self.target.name, :percent => self.percent)
   
