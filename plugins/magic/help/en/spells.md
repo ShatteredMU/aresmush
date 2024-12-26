@@ -3,6 +3,7 @@ toc: 5 - Magic, FS3 Skills, and Combat
 summary: Learning & casting spells
 aliases:
 - magic
+- mana
 ---
 For a full explanation of the Magic system, see the [Magic wiki page](/wiki/magic).
 # Spells

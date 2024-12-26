@@ -9,6 +9,12 @@ module AresMUSH
       end
 
       def handle
+
+        if (combat.organizer != enactor)
+          client.emit_failure t('fs3combat.only_organizer_can_do')
+          return
+        end
+        
         combat = enactor.combat
         combat.combatants.each do |c|
           puts c.name
