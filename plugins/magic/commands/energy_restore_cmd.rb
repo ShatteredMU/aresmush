@@ -29,7 +29,7 @@ module AresMUSH
   
           Magic.set_pc_energy(self.target, self.percent)
           
-          client.emit_success t('magic.fatigue_set', :name => self.target.name, :name => self.percent)
+          client.emit_success t('magic.fatigue_set', :name => self.target.name, :percent => self.percent)
   
         end
       end
