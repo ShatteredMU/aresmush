@@ -17,7 +17,7 @@ module AresMUSH
         end
   
         def handle
-
+          Global.logger.debug self.success
           combat = enactor.combat
   
           if (combat.organizer != enactor)
