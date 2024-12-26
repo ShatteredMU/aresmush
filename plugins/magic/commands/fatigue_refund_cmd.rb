@@ -3,7 +3,7 @@ module AresMUSH
       class FatigueRefundCmd
         include CommandHandler
         #fatigue/refund <name>=<spell>/<fail>
-        attr_accessor :target_name, :spell, :success
+        attr_accessor :target_name, :spell, :success, :target
 
         def parse_args
           args = cmd.parse_args(ArgParser.arg1_equals_arg2_slash_optional_arg3)
