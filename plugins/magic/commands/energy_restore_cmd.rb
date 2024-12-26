@@ -19,8 +19,8 @@ module AresMUSH
         end
   
         def handle
-          Login.emit_if_logged_in self.target
-          Login.emit_if_logged_in self.percent
+          puts self.target
+          puts self.percent
           combat = enactor.combat
   
           if (combat.organizer != enactor)
