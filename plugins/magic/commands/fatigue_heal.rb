@@ -5,12 +5,12 @@ module AresMUSH
 
 
       def check_errors
-        return "You're not in combat" if !enactor.combat
+        return "You're not in combat." if !enactor.combat
       end
 
       def handle
         combat = enactor.combat
-        
+
         if (combat.organizer != enactor)
           client.emit_failure t('fs3combat.only_organizer_can_do')
           return
