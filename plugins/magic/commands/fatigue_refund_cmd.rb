@@ -14,7 +14,8 @@ module AresMUSH
   
         def check_errors
           return "You're not in combat." if !enactor.combat
-          
+          spell_list = Global.read_config("spells")
+          return t('magic.not_spell') if !spell_list.include?(self.spell)
         end
   
         def handle
