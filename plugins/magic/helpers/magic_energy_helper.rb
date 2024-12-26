@@ -7,8 +7,8 @@ module AresMUSH
       # puts  "Magic energy after reset: #{char.name}: #{char.magic_energy}"
     end
 
-    def self.set_pc_energy(target_name, percent)
-      char = Character.named(target_name)
+    def self.set_pc_energy(target, percent)
+      char = Character.named(target)
       new_magic_energy = char.total_magic_energy * percent
       char.update(magic_energy: new_magic_energy)
       puts "Char #{char} #{char.name} #{char.magic_energy}"
