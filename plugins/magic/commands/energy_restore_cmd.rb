@@ -27,7 +27,7 @@ module AresMUSH
             return
           end
   
-          Magic.set_pc_energy(combatant.associated_model, self.percent)
+          Magic.set_pc_energy(combat.combatant.associated_model, self.percent)
           
           client.emit_success t('magic.fatigue_set', :name => self.target.name, :percent => self.percent)
   
