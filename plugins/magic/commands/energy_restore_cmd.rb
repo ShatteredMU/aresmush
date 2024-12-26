@@ -19,8 +19,7 @@ module AresMUSH
         end
   
         def handle
-          puts self.target
-          puts self.percent
+
           combat = enactor.combat
   
           if (combat.organizer != enactor)
@@ -30,7 +29,7 @@ module AresMUSH
   
           Magic.set_pc_energy(self.target, self.percent)
           
-          client.emit_success t("#{target.name}'s mana set to #{percent}%.")
+          client.emit_success t('magic.fatigue_set', :name => self.target.name, :name => self.percent)
   
         end
       end
