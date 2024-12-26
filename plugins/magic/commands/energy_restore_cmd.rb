@@ -7,7 +7,7 @@ module AresMUSH
 
         def parse_args
           args = cmd.parse_args(ArgParser.arg1_equals_arg2)
-          self.target = Character.find_one_by_name(args.arg1)
+          self.target = Combat.find_named_thing(args.arg1)
           self.percent = trim_arg(args.arg2)
         end
   
@@ -27,7 +27,7 @@ module AresMUSH
             return
           end
   
-          Magic.set_pc_energy(self.target.associated_model, self.percent)
+          Magic.set_pc_energy(combatant.associated_model, self.percent)
           
           client.emit_success t('magic.fatigue_set', :name => self.target.name, :percent => self.percent)
   
