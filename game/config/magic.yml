@@ -59,7 +59,6 @@ magic:
     spell/mana: spell/fatigue
     combat/spellmod: spell/mod
     manarestore: fatigueheal
-    fatigue/set: energyrestore
   achievements:
     has_died:
       type: story
