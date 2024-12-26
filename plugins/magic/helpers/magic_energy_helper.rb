@@ -8,7 +8,7 @@ module AresMUSH
     end
 
     def self.set_pc_energy(target, percent)
-      char = Character.named(target)
+      char = target
       new_magic_energy = char.total_magic_energy * percent
       char.update(magic_energy: new_magic_energy)
       puts "Char #{char} #{char.name} #{char.magic_energy}"
