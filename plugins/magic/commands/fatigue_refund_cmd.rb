@@ -9,7 +9,7 @@ module AresMUSH
           args = cmd.parse_args(ArgParser.arg1_equals_arg2_slash_optional_arg3)
           self.target = FS3Combat.find_named_thing(args.arg1, enactor)
           self.spell = titlecase_arg(args.arg2)
-          self.success = trim_arg(args.arg3)
+          self.success = titlecase_arg(args.arg3)
         end
   
         def check_errors
