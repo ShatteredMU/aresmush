@@ -9,8 +9,8 @@ module AresMUSH
           args = cmd.parse_args(ArgParser.arg1_equals_arg2)
           self.target = Character.named(args.arg1)
           self.percent = args.arg2.to_i
-          puts self.target
-          puts self.percent
+          Login.emit_if_logged_in self.target
+          Login.emit_if_logged_in self.percent
         end
   
         def check_errors
