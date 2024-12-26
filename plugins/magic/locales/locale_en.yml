@@ -25,6 +25,7 @@ en:
       cannot_spell_fatigue_heal_further: "%{name}'s mana cannot be restored further via magical means."
       magic_energy_mod: "Mana Modifier:"
       fatigue_set: "%{name}'s mana pool has been set to %{percent}%."
+      fatigue_refunded: "%{name} has been refunded for a cast of %{spell}."
     # ----------------------------
     # POTIONS
     # ----------------------------

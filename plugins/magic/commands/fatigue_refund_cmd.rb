@@ -27,7 +27,7 @@ module AresMUSH
   
           Magic.refund_magic_energy(self.target.combatant.associated_model, self.spell, self.success)
           
-          client.emit_success t('magic.fatigue_set', :name => self.target.name, :percent => self.percent)
+          client.emit_success t('magic.fatigue_refunded', :name => self.target.name, :percent => self.percent)
   
         end
       end
