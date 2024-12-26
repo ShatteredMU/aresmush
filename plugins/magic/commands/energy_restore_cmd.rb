@@ -7,7 +7,7 @@ module AresMUSH
 
         def parse_args
           args = cmd.parse_args(ArgParser.arg1_equals_arg2)
-          self.target = Character.find_one_by_name(args.arg1)
+          self.target = combatant.associated_model.(args.arg1)
           self.percent = trim_arg(args.arg2)
         end
   
