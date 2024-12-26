@@ -9,6 +9,7 @@ module AresMUSH
 
     def self.set_pc_energy(target, percent)
       Global.logger.debug percent
+      Global.logger.debug percent.to_i
       char = target
       percentage = percent.to_i / 100
       Global.logger.debug percentage
