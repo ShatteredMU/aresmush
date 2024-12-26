@@ -16,6 +16,7 @@ module AresMUSH
           return "You're not in combat." if !enactor.combat
           spell_list = Global.read_config("spells")
           return t('magic.not_spell') if !spell_list.include?(self.spell)
+          return "That is not a valid target." if !self.target
         end
   
         def handle
@@ -28,7 +29,9 @@ module AresMUSH
           end
   
           Magic.refund_magic_energy(self.target.combatant.associated_model, self.spell, self.success)
-          
+          if self.success == "Fail"
+            then client.emit_success t('magic.fatigue_refunded_fail', :name => self.target.name, :spell => self.spell)
+          end
           client.emit_success t('magic.fatigue_refunded', :name => self.target.name, :spell => self.spell)
   
         end

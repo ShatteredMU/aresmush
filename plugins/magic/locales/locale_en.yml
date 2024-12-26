@@ -26,6 +26,7 @@ en:
       magic_energy_mod: "Mana Modifier:"
       fatigue_set: "%{name}'s mana pool has been set to %{percent}%."
       fatigue_refunded: "%{name} has been refunded for a cast of %{spell}."
+      fatigue_refunded_fail: "%{name} has been refunded for a failed cast of %{spell}."
     # ----------------------------
     # POTIONS
     # ----------------------------
