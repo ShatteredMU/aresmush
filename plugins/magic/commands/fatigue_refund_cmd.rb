@@ -32,7 +32,7 @@ module AresMUSH
           if self.success == "Fail"
             then client.emit_success t('magic.fatigue_refunded_fail', :name => self.target.name, :spell => self.spell)
           end
-          elsif !self.success 
+          if !self.success 
             then client.emit_success t('magic.fatigue_refunded', :name => self.target.name, :spell => self.spell)
           end
         end
