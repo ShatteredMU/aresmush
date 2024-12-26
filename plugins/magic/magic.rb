@@ -42,6 +42,12 @@ module AresMUSH
         return FatigueHealCmd
       end
 
+      #ENERGY RESTORE
+      case cmd.root
+      when "energyrestore"
+        return EnergyRestoreCmd
+      end
+
       #ITEMS
       case cmd.root
       when "items"
