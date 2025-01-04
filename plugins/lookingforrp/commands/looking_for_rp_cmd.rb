@@ -30,7 +30,7 @@ module AresMUSH
         else
           LookingForRp.set(enactor, self.duration.to_i)
           client.emit_success t('lookingforrp.set', :duration => self.duration)
-          Channels.send_to_channel("RP Requests", t('lookingforrp.rp_request_emit', :name => enactor.name))
+          Channels.send_to_channel("RP Requests", t('lookingforrp.rp_request_emit', :name => enactor.name, :duration => self.duration))
         end
       end
     end
