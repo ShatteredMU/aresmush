@@ -3,7 +3,7 @@ module AresMUSH
       class LookingForRpAnnounceCommand
         include CommandHandler
 
-        attr_accessor :toggle, :name, :looking_for_rp_announce
+        attr_accessor :toggle
 
         def parse_args
           self.toggle = (cmd.args)
