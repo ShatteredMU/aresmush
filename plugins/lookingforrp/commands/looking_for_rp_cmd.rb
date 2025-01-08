@@ -29,7 +29,7 @@ module AresMUSH
           client.emit_success t('lookingforrp.expire')
         else
           LookingForRp.set(enactor, self.duration.to_i)
-          if enactor.looking_for_rp_announce == true
+          if enactor.looking_for_rp_announce == "true"
             client.emit_success t('lookingforrp.set', :duration => self.duration)
           end
           Channels.send_to_channel("RP Requests", t('lookingforrp.rp_request_emit', :name => enactor.name, :duration => self.duration))
