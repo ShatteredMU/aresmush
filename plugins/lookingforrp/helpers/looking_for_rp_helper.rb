@@ -37,12 +37,12 @@ module AresMUSH
       chars_looking_for_rp.map { |c| c.name }
     end
 
-    def self.announce_toggle_off(char)
-      char.update(looking_for_rp_announce: "off")
-    end
-
     def self.announce_toggle_on(char)
       char.update(looking_for_rp_announce: "on")
+    end
+
+    def self.announce_toggle_off(char)
+      char.update(looking_for_rp_announce: "off")
     end
 
   end
