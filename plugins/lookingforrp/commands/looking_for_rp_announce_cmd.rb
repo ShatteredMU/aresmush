@@ -19,6 +19,10 @@ module AresMUSH
             client.emit_success "You have toggled RP Requests announcements off."
 
           end
+          if self.toggle == "on"
+            LookingForRP.announce_toggle_on(enactor)
+            client.emit_success "You have toggled RP Requests announcements on."
+          end
         end
       end
   
