@@ -3,7 +3,7 @@ module AresMUSH
       class LookingForRpAnnounceCommand
         include CommandHandler
 
-        attr_accessor :toggle, :name
+        attr_accessor :toggle, :name, :looking_for_rp_announce
 
         def parse_args
           self.toggle = (cmd.args)
@@ -17,7 +17,7 @@ module AresMUSH
           if self.toggle == "off"
             LookingForRp.announce_toggle_off(enactor)
             client.emit_success "You have toggled RP Requests announcements off."
-                     
+
           end
         end
       end
