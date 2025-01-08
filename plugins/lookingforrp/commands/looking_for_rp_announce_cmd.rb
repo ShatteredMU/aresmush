@@ -13,10 +13,6 @@ module AresMUSH
           [ self.toggle ]
         end
         
-        def check_toggle
-          return self.toggle.validate
-        end
-    
         def handle
           if self.toggle == "off"
             LookingForRp.announce_toggle_off(enactor)
