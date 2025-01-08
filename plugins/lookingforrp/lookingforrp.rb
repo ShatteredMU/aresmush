@@ -19,6 +19,8 @@ module AresMUSH
           return LookingForRpOffCommand
         when "text"
           return LookingForRpTextCommand
+        when "announce"
+          return LookingForRpAnnounceCommand
         when nil
           return LookingForRpCommand
         end
