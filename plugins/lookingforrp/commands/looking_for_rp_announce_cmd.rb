@@ -23,7 +23,7 @@ module AresMUSH
             client.emit_success "You have toggled RP Requests announcements off."
             
 
-            end          
+                      
           end
         end
       end
