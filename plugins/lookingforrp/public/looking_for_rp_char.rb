@@ -3,6 +3,6 @@ module AresMUSH
     attribute :looking_for_rp, :type => DataType::Boolean, :default => false
     attribute :looking_for_rp_expires_at, :type => Ohm::DataTypes::DataType::Time
     attribute :looking_for_rp_type
-    attribute :looking_for_rp_announce, default: "on"
+    attribute :looking_for_rp_announce, :string, default: "on"
   end
 end
