@@ -4,5 +4,7 @@ module AresMUSH
     attribute :looking_for_rp_expires_at, :type => Ohm::DataTypes::DataType::Time
     attribute :looking_for_rp_type
     attribute :looking_for_rp_announce, default: "on"
+
+    defaulture :looking_for_rp_announce => "on"
   end
 end
