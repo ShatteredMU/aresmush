@@ -38,11 +38,11 @@ module AresMUSH
     end
 
     def self.announce_toggle_off(char)
-      char.update(looking_for_rp_announce: "false")
+      char.update(looking_for_rp_announce: false)
     end
 
     def self.announce_toggle_on(char)
-      char.update(looking_for_rp_announce: "true")
+      char.update(looking_for_rp_announce: true)
     end
 
   end
