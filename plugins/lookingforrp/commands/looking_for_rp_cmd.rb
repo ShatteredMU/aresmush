@@ -24,16 +24,13 @@ module AresMUSH
 
       def handle
         puts " Duration #{self.duration}"
-        if enactor.looking_for_rp_announce.nil?
-          LookingForRP.announce_toggle_on(enactor)
-        end
         if self.duration.nil?
           LookingForRp.expire(enactor)
           client.emit_success t('lookingforrp.expire')
         else
           LookingForRp.set(enactor, self.duration.to_i)
           client.emit_success t('lookingforrp.set', :duration => self.duration)
-          if enactor.looking_for_rp_announce == true
+          if enactor.looking_for_rp_announce == "on"
             Channels.send_to_channel("RP Requests", t('lookingforrp.rp_request_emit', :name => enactor.name, :duration => self.duration))
           end
         end
