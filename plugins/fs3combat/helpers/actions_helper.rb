@@ -91,6 +91,8 @@ module AresMUSH
       puts "Checking for KO #{combatant.name}"
       return if (!combatant.freshly_damaged || combatant.is_ko || combatant.total_damage_mod > -1.0)
 
+      ExpandedMounts.total_mod_log("Total damage mod at KO roll", combatant) if combatant.bonded
+
       combatant.log "Checking for KO: #{combatant.name} | damaged=#{combatant.freshly_damaged} ko=#{combatant.is_ko} mod=#{combatant.total_damage_mod}"
 
       if (combatant.is_npc? && (combatant.total_damage_mod <= -8))

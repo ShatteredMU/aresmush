@@ -211,17 +211,18 @@ module AresMUSH
       if weapon_special
         weapon_special.update(rounds: spell['rounds'])
       else
+        target_weapon = target.weapon.before('+')
         weapon_special = {
         name: spell['weapon_specials'],
         # Needs to be +1 because the newturn immediately after cast will do -1
         rounds: spell['rounds'] + 1,
-        weapon: target.weapon,
+        weapon: target_weapon,
         combatant: target
       }
       MagicWeaponSpecials.create(weapon_special)
       end
 
-      Magic.set_magic_weapon(target, target.weapon)
+      Magic.set_magic_weapon(target, target_weapon)
 
       if (spell['heal_points'] && wound)
         message = []

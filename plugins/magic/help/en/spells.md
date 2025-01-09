@@ -3,6 +3,7 @@ toc: 5 - Magic, FS3 Skills, and Combat
 summary: Learning & casting spells
 aliases:
 - magic
+- mana
 ---
 For a full explanation of the Magic system, see the [Magic wiki page](/wiki/magic).
 # Spells
@@ -38,6 +39,8 @@ For a full explanation of the Magic system, see the [Magic wiki page](/wiki/magi
 ## Combat Organizer Commands
 `spell/mod <name>=<mod>` - Set someone's spell mod to affect their spell rolls.
 **Tip:** Mods only last for one round.
+`fatigue/set <name>=<#>` - Set someone's mana pool to a given percentage between 1 and 100. Use whole numbers. 
+`fatigue/refund <name>=<spell>[/fail]` - Refund a miscast spell's mana. 
 
 ## Admin commands
 `spell/add <name>=<spell>` - Add a spell to someone's spell list without spending XP.

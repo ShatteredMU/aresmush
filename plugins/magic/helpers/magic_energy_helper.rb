@@ -7,9 +7,30 @@ module AresMUSH
       # puts  "Magic energy after reset: #{char.name}: #{char.magic_energy}"
     end
 
+    def self.set_pc_energy(target, percent)
+      char = target
+      percentage = percent.to_f / 100
+      new_magic_energy = char.total_magic_energy * percentage
+      char.update(magic_energy: new_magic_energy)
+      puts "Char #{char} #{char.name} #{char.magic_energy}"
+    end
+
     def self.set_npc_energy(npc, percent)
       new_energy = npc.total_magic_energy * percent
       npc.update(magic_energy: new_energy)
+    end
+
+    def self.refund_magic_energy(char_or_npc, spell, success)
+      char = char_or_npc
+      level = Global.read_config("spells", spell, "level")
+      spell_school = Global.read_config("spells", spell, "school")
+      cost = Global.read_config("magic", "energy_cost_by_level", level)
+      success == "Fail" ? cost = cost/4 : cost = cost
+      magic_energy = [(char.magic_energy + cost), 0].max
+      if magic_energy >= (char.total_magic_energy)
+        then magic_energy = char.total_magic_energy
+      end
+      char.update(magic_energy: magic_energy)
     end
 
     def self.subtract_magic_energy(char_or_npc, spell, success)
