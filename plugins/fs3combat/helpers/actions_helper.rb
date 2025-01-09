@@ -328,8 +328,8 @@ module AresMUSH
     def self.determine_attack_margin(combatant, target, mod = 0, called_shot = nil, mount_hit = false, result = nil)
       weapon = combatant.weapon
       Global.logger.debug "result before attack roll: #{result}"
-      result ? attack_roll = result : attack_roll = FS3Combat.roll_attack(combatant, target, mod - combatant.recoil)
-
+      #result ? attack_roll = result : attack_roll = FS3Combat.roll_attack(combatant, target, mod - combatant.recoil)
+      attack_roll = FS3Combat.roll_attack(combatant, target, mod - combatant.recoil)
       defense_roll = FS3Combat.roll_defense(target, weapon)
 
       attacker_net_successes = attack_roll - defense_roll
