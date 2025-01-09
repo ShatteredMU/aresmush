@@ -524,7 +524,7 @@ module AresMUSH
 
     def self.cast_attack_target(caster_name, combatant, target, called_shot = nil, result)
         return [ t('fs3combat.has_no_target', :name => caster_name) ] if !target
-
+        combatant.log "congrats this is the right place"
         margin = FS3Combat.determine_attack_margin(combatant, target, mod = 0, called_shot = nil, mount_hit = false, result)
         combatant.log "#{caster_name} 's margin post 'determine attack margin' margin=#{margin[:message]}"
         
