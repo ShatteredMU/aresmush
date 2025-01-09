@@ -339,7 +339,10 @@ module AresMUSH
       hit = false
       weapon_type = FS3Combat.weapon_stat(combatant.weapon, "weapon_type")
       hit_mount = FS3Combat.hit_mount?(combatant, target, attacker_net_successes, mount_hit)
-      if (attack_roll <= 0)
+      #if (attack_roll <= 0)
+      if combatant.action_klass == "Spell"
+        hit = true
+      elsif (attack_roll <= 0)
         message = t('fs3combat.attack_missed', :name => combatant.name, :target => target.name, :weapon => weapon)
       elsif (called_shot && (attacker_net_successes > 0) && (attacker_net_successes < 2))
         message = t('fs3combat.attack_near_miss', :name => combatant.name, :target => target.name, :weapon => weapon)
