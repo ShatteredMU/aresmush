@@ -377,6 +377,8 @@ module AresMUSH
           #  hit = true
           #end
           # /Magic changes
+        else
+          message = t('fs3combat.attack_near_miss', :name => combatant.name, :target => target.name, :weapon => weapon)
         end
       else
         hit = true
