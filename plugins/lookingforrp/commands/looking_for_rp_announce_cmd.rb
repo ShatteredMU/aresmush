@@ -16,11 +16,11 @@ module AresMUSH
         def handle
           if self.toggle == "off"
             LookingForRp.announce_toggle_off(enactor)
-            client.emit_success "You have toggled RP Requests announcements off."
+            client.emit_success t('lookingforrp.announce_off')
 
           elsif self.toggle == "on"
             LookingForRp.announce_toggle_on(enactor)
-            client.emit_success "You have toggled RP Requests announcements on."
+            client.emit_success t('lookingforrp.announce_on')
           end
         end
       end
