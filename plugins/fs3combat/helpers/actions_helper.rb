@@ -377,7 +377,7 @@ module AresMUSH
           #  hit = true
           #end
           # /Magic changes
-        #end
+        end
       else
         hit = true
       end
