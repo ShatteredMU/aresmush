@@ -340,7 +340,7 @@ module AresMUSH
       weapon_type = FS3Combat.weapon_stat(combatant.weapon, "weapon_type")
       hit_mount = FS3Combat.hit_mount?(combatant, target, attacker_net_successes, mount_hit)
       #if (attack_roll <= 0)
-      weapon_group = FS3Combat.weapon_stat(combatant.weapon, "weapon_special_group")
+      weapon_group = weapon.weapon_special_group
       Global.logger.debug "Action Klass #{combatant.action_klass}"
       Global.logger.debug "weapon group #{weapon_group}"
       if combatant.action_klass == "Spell"
