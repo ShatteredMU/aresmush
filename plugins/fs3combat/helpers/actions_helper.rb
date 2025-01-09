@@ -345,6 +345,10 @@ module AresMUSH
       Global.logger.debug "weapon group #{weapon_group}"
       if weapon_group == "Spell"
         hit = true
+        if attacker_net_successes <= 0
+          combatant.log "Spell override - always grant 1 net success"
+          attacker_net_successes = 1
+        end
       elsif (attack_roll <= 0)
         message = t('fs3combat.attack_missed', :name => combatant.name, :target => target.name, :weapon => weapon)
       elsif (called_shot && (attacker_net_successes > 0) && (attacker_net_successes < 2))
