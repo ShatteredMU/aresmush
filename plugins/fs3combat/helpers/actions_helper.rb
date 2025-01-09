@@ -343,7 +343,7 @@ module AresMUSH
       weapon_group = FS3Combat.weapon_stat(weapon, "special_group") 
       Global.logger.debug "Action Klass #{combatant.action_klass}"
       Global.logger.debug "weapon group #{weapon_group}"
-      if combatant.action_klass == "Spell"
+      if weapon_group == "Spell"
         hit = true
       elsif (attack_roll <= 0)
         message = t('fs3combat.attack_missed', :name => combatant.name, :target => target.name, :weapon => weapon)
