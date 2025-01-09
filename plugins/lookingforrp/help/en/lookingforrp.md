@@ -28,4 +28,4 @@ See who is looking for RP on the webportal or by using `who` or `where`.
 `lookingforrp/text` - Set yourself as looking for text RP.
 `lookingforrp/text <2 or 3>` - Set yourself as looking for text RP for a given number of hours.
 `lookingforrp/off` - Turn off your looking for RP flag.
-`lookingforrp/announce <on or off>` - Turn off announcements to 'RP Requests' channel when you set your looking for RP flag.
+`lookingforrp/announce <on or off>` - Toggle announcements to 'RP Requests' channel when you set your looking for RP flag.
