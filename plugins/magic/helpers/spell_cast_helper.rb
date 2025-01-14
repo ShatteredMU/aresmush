@@ -526,7 +526,8 @@ module AresMUSH
     def self.cast_attack_target(caster_name, combatant, target, called_shot = nil, result)
         return [ t('fs3combat.has_no_target', :name => caster_name) ] if !target
         margin = FS3Combat.determine_attack_margin(combatant, target, mod = 0, called_shot = nil, mount_hit = false, result)
-
+        combatant.log "#{caster_name} 's margin post 'determine attack margin' margin=#{margin[:message]}"
+        
         # Update recoil after determining the attack success but before returning out for a miss
         recoil = FS3Combat.weapon_stat(combatant.weapon, "recoil")
         combatant.update(recoil: combatant.recoil + recoil)
@@ -535,6 +536,7 @@ module AresMUSH
 
         weapon = combatant.weapon
         attacker_net_successes = margin[:attacker_net_successes]
+        combatant.log "#{caster_name} 's net successes post 'determine attack margin' net successes=#{attacker_net_successes}"
 
         FS3Combat.resolve_attack(combatant, caster_name, target, weapon, attacker_net_successes, called_shot)
       end

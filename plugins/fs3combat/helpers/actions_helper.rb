@@ -329,8 +329,8 @@ module AresMUSH
     # Returns { hit: true/false, attacker_net_successes: #, message: explains miss reason }
     def self.determine_attack_margin(combatant, target, mod = 0, called_shot = nil, mount_hit = false, result = nil)
       weapon = combatant.weapon
-      result ? attack_roll = result : attack_roll = FS3Combat.roll_attack(combatant, target, mod - combatant.recoil)
-
+      #result ? attack_roll = result : attack_roll = FS3Combat.roll_attack(combatant, target, mod - combatant.recoil)
+      attack_roll = FS3Combat.roll_attack(combatant, target, mod - combatant.recoil)
       defense_roll = FS3Combat.roll_defense(target, weapon)
 
       attacker_net_successes = attack_roll - defense_roll
@@ -338,7 +338,15 @@ module AresMUSH
       hit = false
       weapon_type = FS3Combat.weapon_stat(combatant.weapon, "weapon_type")
       hit_mount = FS3Combat.hit_mount?(combatant, target, attacker_net_successes, mount_hit)
-      if (attack_roll <= 0)
+      #if (attack_roll <= 0)
+      weapon_group = FS3Combat.weapon_stat(weapon, "special_group") 
+      if weapon_group == "Spell"
+        hit = true
+        if attacker_net_successes <= 0
+          combatant.log "Spell override - always grant 1 net success"
+          attacker_net_successes = 1
+        end
+      elsif (attack_roll <= 0)
         message = t('fs3combat.attack_missed', :name => combatant.name, :target => target.name, :weapon => weapon)
       elsif (called_shot && (attacker_net_successes > 0) && (attacker_net_successes < 2))
         message = t('fs3combat.attack_near_miss', :name => combatant.name, :target => target.name, :weapon => weapon)
@@ -363,16 +371,18 @@ module AresMUSH
           else
             message = t('fs3combat.attack_dodged', :name => combatant.name, :target => target.name, :weapon => weapon)
           end
-        else
+        #else
           # Magic Changes
-          spell_boost = attacker_net_successes + 1
-          puts "**** SPELL BOOST: #{attacker_net_successes} -> #{spell_boost}"
-          if combatant.action_klass == "Spell" && spell_boost < 0
-            message = t('fs3combat.attack_near_miss', :name => combatant.name, :target => target.name, :weapon => weapon)
-          else
-            hit = true
-          end
+          #spell_boost = attacker_net_successes + 1
+          #puts "**** SPELL BOOST: #{attacker_net_successes} -> #{spell_boost}"
+          #if combatant.action_klass == "Spell" && spell_boost < 0
+          #  message = t('fs3combat.attack_near_miss', :name => combatant.name, :target => target.name, :weapon => weapon)
+          #else
+          #  hit = true
+          #end
           # /Magic changes
+        else
+          message = t('fs3combat.attack_near_miss', :name => combatant.name, :target => target.name, :weapon => weapon)
         end
       else
         hit = true
