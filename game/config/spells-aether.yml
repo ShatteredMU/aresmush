@@ -247,6 +247,8 @@ spells:
     duration: 1 round
     effect: Damage
     fs3_attack: true
+    is_stun: true
+    rounds: 1
     level: 5
     name: Breathless
     range: Short
