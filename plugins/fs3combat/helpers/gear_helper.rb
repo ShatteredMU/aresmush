@@ -187,7 +187,10 @@ module AresMUSH
       combatant.update(action_klass: nil)
       combatant.update(action_args: nil)
       #Allows swapping back after using a spell weapon
-      combatant.update(last_mundane_weapon: weapon)
+      weapon_group = FS3Combat.weapon_stat(weapon, "special_group") 
+      if weapon_group != "Spell"
+        combatant.update(last_mundane_weapon: weapon)
+      end
 
       message = t('fs3combat.weapon_changed', :name => combatant.name,
         :weapon => combatant.weapon)
