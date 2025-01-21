@@ -108,10 +108,11 @@ module AresMUSH
 
             weapon_type = FS3Combat.weapon_stat(self.combatant.weapon, "weapon_type")
             targets.each do |target|
-              if spell['is_stun']
-                message = Magic.cast_stun(self.caster_name, self.combatant, target, self.spell_name, spell['rounds'], result = succeeds[:result])
-                messages.concat message
-              elsif weapon_type == "Explosive"
+              #if spell['is_stun']
+              #  message = Magic.cast_stun(self.caster_name, self.combatant, target, self.spell_name, spell['rounds'], result = succeeds[:result])
+              #  messages.concat message
+              #elsif weapon_type == "Explosive"
+              if weapon_type == "Explosive"
                 message = Magic.cast_explosion(self.caster_name, self.combatant, target, self.spell_name, result = succeeds[:result])
                 messages.concat message
               elsif weapon_type == "Suppressive"
@@ -200,6 +201,12 @@ module AresMUSH
               #Apply Mods
               if spell['attack_mod'] || spell['defense_mod'] || spell['init_mod'] || spell['lethal_mod'] || spell['spell_mod']
                 message = Magic.cast_mod(self.caster_name, combatant, target, self.spell_name, spell['damage_type'], spell['rounds'], succeeds[:result], spell['attack_mod'], spell['defense_mod'], spell['init_mod'], spell['lethal_mod'], spell['spell_mod'])
+                messages.concat message
+              end
+
+              #Stuns
+              if spell['is_stun']
+                message = Magic.cast_stun(self.caster_name, self.combatant, target, self.spell_name, spell['rounds'], result = succeeds[:result])
                 messages.concat message
               end
 
