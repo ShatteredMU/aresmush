@@ -186,6 +186,8 @@ module AresMUSH
       combatant.update(max_ammo: max_ammo)
       combatant.update(action_klass: nil)
       combatant.update(action_args: nil)
+      #Allows swapping back after using a spell weapon
+      combatant.update(last_mundane_weapon: weapon)
 
       message = t('fs3combat.weapon_changed', :name => combatant.name,
         :weapon => combatant.weapon)
