@@ -2,7 +2,7 @@
 module AresMUSH
   module ExpandedMounts
 
-    def self.total_mod_log(message, combatant)
+    def self.total_mod_log(message, combatant) 
       combatant.log "#{message}: #{combatant.associated_model.name}=#{FS3Combat.total_damage_mod(combatant.associated_model)} + #{combatant.bonded.name}=#{FS3Combat.total_damage_mod(combatant.bonded)} / 2 = #{(FS3Combat.total_damage_mod(combatant.associated_model) + FS3Combat.total_damage_mod(combatant.bonded)) / 2}"
     end
 
