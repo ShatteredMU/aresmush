@@ -109,11 +109,12 @@ module AresMUSH
 
             weapon_type = FS3Combat.weapon_stat(self.combatant.weapon, "weapon_type")
             targets.each do |target|
-              #if spell['is_stun']
-              #  message = Magic.cast_stun(self.caster_name, self.combatant, target, self.spell_name, spell['rounds'], result = succeeds[:result])
-              #  messages.concat message
-              #elsif weapon_type == "Explosive"
-              if weapon_type == "Explosive"
+              if spell['is_stun']
+                combatant.log "You're in the right place"
+                message = Magic.cast_stun(self.caster_name, self.combatant, target, self.spell_name, spell['rounds'], result = succeeds[:result])
+                messages.concat message
+              elsif weapon_type == "Explosive"
+              #if weapon_type == "Explosive"
                 message = Magic.cast_explosion(self.caster_name, self.combatant, target, self.spell_name, result = succeeds[:result])
                 messages.concat message
               elsif weapon_type == "Suppressive"
