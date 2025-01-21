@@ -130,6 +130,13 @@ module AresMUSH
         end
       end
 
+      #Spell Weapons swap back
+      weapon = combatant.weapon
+      weapon_group = FS3Combat.weapon_stat(weapon, "special_group") 
+      if weapon_group == "Spell"
+        Magic.set_magic_weapon(combatant,combatant.last_mundane_weapon)
+      end
+
       if mods.any? && mods.count > 1
         messages.concat  [t('magic.mods_wore_off', :name => combatant.name, :mods => mods.compact.join(", "))]
       elsif mods.any?
