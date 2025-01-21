@@ -31,7 +31,8 @@ module AresMUSH
     # Death
     attribute :death_count, :type => DataType::Integer, :default => 0
 
-
+    # Track Mundane Weapon
+    attribute :last_mundane_weapon
 
 
   end
