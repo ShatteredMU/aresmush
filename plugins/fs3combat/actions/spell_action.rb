@@ -98,7 +98,8 @@ module AresMUSH
 
         #Spells roll for success individually because they can only do one thing. This is because attacks need to use different measures of success. Also, because weapon changes for FS3 attacks are on the caster, not the target.
 
-        if (spell['fs3_attack'] || spell['is_stun'])
+        #if (spell['fs3_attack'] || spell['is_stun'])
+        if (spell['fs3_attack'])
 
           if succeeds[:succeeds] == "%xgSUCCEEDS%xn"
             #Weapon
