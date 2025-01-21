@@ -207,6 +207,7 @@ module AresMUSH
 
               #Stuns
               if spell['is_stun']
+                combatant.log "~* YOU GOT THERE *~"
                 message = Magic.cast_stun(self.caster_name, self.combatant, target, self.spell_name, spell['rounds'], result = succeeds[:result])
                 messages.concat message
               end
