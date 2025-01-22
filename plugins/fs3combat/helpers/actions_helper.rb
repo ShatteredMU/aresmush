@@ -251,9 +251,9 @@ module AresMUSH
       pen = FS3Combat.weapon_stat(weapon, "penetration")
       protect = FS3Combat.armor_stat(armor, "protection")[hitloc]
       damage_type = Magic.magic_damage_type(weapon)
-      shield = Magic.find_best_shield(combatant, damage_type)
+      Magic.find_best_shield(combatant, damage_type) ? shield_protect = shield.strength * 2 : 0
       #Give a double bonus to shield strength.
-      shield ? shield_protect = shield.strength * 2 : 0
+      #shield ? shield_protect = shield.strength * 2 : 0
 
       # Armor doesn't cover this hit location
       return 0 if !protect
