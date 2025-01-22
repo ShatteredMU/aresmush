@@ -253,7 +253,7 @@ module AresMUSH
       damage_type = Magic.magic_damage_type(weapon)
       shield = Magic.find_best_shield(combatant, damage_type)
       #Give a double bonus to shield strength.
-      if shield.false? 
+      if shield = false
         shield_protect = 0
       else 
         shield_protect = shield.strength * 2
