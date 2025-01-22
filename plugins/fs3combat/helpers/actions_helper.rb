@@ -252,7 +252,7 @@ module AresMUSH
       protect = FS3Combat.armor_stat(armor, "protection")[hitloc]
       damage_type = Magic.magic_damage_type(weapon)
       shield = Magic.find_best_shield(combatant, damage_type)
-      Global.logger.debug "shield value is #{shield}, shield strength is #{shield.strength}"
+      #Global.logger.debug "shield value is #{shield}, shield strength is #{shield.strength}"
       #Give a double bonus to shield strength.
       if !shield 
         shield_protect = 0
