@@ -391,21 +391,21 @@ module AresMUSH
         hit = true
       end
       #Shield changes
-      stopped_by_shield = Magic.determine_margin_with_shield(target, combatant, weapon, attack_roll, defense_roll)
+      #stopped_by_shield = Magic.determine_margin_with_shield(target, combatant, weapon, attack_roll, defense_roll)
       #if stopped_by_shield && hit == true
       #  hit = stopped_by_shield[:hit]
       #  message = stopped_by_shield[:message]
       #end
 
      combatant.log "Attack Margin: mod=#{mod} called=#{called_shot} " +
-     " attack=#{attack_roll} defense=#{defense_roll} hit=#{hit} cover=#{stopped_by_cover} shield=#{stopped_by_shield } result=#{message}"
+     " attack=#{attack_roll} defense=#{defense_roll} hit=#{hit} cover=#{stopped_by_cover} result=#{message}"
 
 
       {
         message: message,
         hit: hit,
         attacker_net_successes: attacker_net_successes,
-        stopped_by_shield: stopped_by_shield,
+        #stopped_by_shield: stopped_by_shield,
       }
     end
 
