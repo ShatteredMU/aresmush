@@ -258,7 +258,8 @@ module AresMUSH
       # Armor doesn't cover this hit location
       return 0 if !protect
       random_die = rand(8) + 1
-      result = random_die + attacker_net_successes + pen - protect #- shield_protect
+      result = random_die + attacker_net_successes + pen - protect - shield_protect 
+      #get a change
 
       if (result >= 8) # 8-9
         armor_reduction = 0
