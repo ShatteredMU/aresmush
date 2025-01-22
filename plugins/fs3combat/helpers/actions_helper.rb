@@ -252,7 +252,8 @@ module AresMUSH
       protect = FS3Combat.armor_stat(armor, "protection")[hitloc]
       damage_type = Magic.magic_damage_type(weapon)
       shield = Magic.find_best_shield(combatant, damage_type)
-      shield_protect = shield.strength
+      #Give a +1 bonus to shield strength.
+      shield_protect = shield.strength + 1
 
       # Armor doesn't cover this hit location
       return 0 if !protect
@@ -480,14 +481,14 @@ module AresMUSH
         melee_damage_mod = [(strength_roll - 1) * 5, 0].max
       end
 
-      damage_type = Magic.magic_damage_type(weapon)
-      Magic.find_best_shield(target, damage_type) ? shield_mods = Magic.shield_mods(target, damage_type) : shield_mods = 0
-      Magic.find_best_shield(target, damage_type) ? messages = [Magic.shield_failed_msgs(target, attack_name, weapon)] : messages = []
+      #damage_type = Magic.magic_damage_type(weapon)
+      #Magic.find_best_shield(target, damage_type) ? shield_mods = Magic.shield_mods(target, damage_type) : shield_mods = 0
+      #Magic.find_best_shield(target, damage_type) ? messages = [Magic.shield_failed_msgs(target, attack_name, weapon)] : messages = []
 
-      total_damage_mod = hit_mod + melee_damage_mod + attack_luck_mod - defense_luck_mod - armor + shield_mods
+      total_damage_mod = hit_mod + melee_damage_mod + attack_luck_mod - defense_luck_mod - armor #+ shield_mods
       target.log "Damage modifiers: attack_luck=#{attack_luck_mod} hit=#{hit_mod}
       melee=#{melee_damage_mod} defense_luck=#{defense_luck_mod} armor=#{armor}
-      shield_mods=#{shield_mods} total=#{total_damage_mod}"
+      total=#{total_damage_mod}"
 
 
       damage = FS3Combat.determine_damage(target, hitloc, weapon, total_damage_mod, crew_hit)
