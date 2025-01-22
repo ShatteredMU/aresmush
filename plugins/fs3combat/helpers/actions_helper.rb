@@ -250,11 +250,13 @@ module AresMUSH
       return 0 if armor.blank?
       pen = FS3Combat.weapon_stat(weapon, "penetration")
       protect = FS3Combat.armor_stat(armor, "protection")[hitloc]
+      shield = Magic.find_best_shield(target, damage_type)
+      shield_protect = shield.strength
 
       # Armor doesn't cover this hit location
       return 0 if !protect
       random_die = rand(8) + 1
-      result = random_die + attacker_net_successes + pen - protect
+      result = random_die + attacker_net_successes + pen - protect - shield_protect
 
       if (result >= 8) # 8-9
         armor_reduction = 0
@@ -269,7 +271,7 @@ module AresMUSH
       end
 
      combatant.log "Determined armor: loc=#{hitloc} weapon=#{weapon} net=#{attacker_net_successes}" +
-      " pen=#{pen} protect=#{protect} random=#{random_die} result=#{result} reduction=#{armor_reduction}"
+      " pen=#{pen} protect=#{protect} shield_protect=#{shield_protect} random=#{random_die} result=#{result} reduction=#{armor_reduction}"
 
       armor_reduction
     end
@@ -387,11 +389,12 @@ module AresMUSH
       else
         hit = true
       end
-      stopped_by_shield = Magic.determine_margin_with_shield(target, combatant, weapon, attack_roll, defense_roll)
-      if stopped_by_shield && hit == true
-        hit = stopped_by_shield[:hit]
-        message = stopped_by_shield[:message]
-      end
+      #Shield changes
+      #stopped_by_shield = Magic.determine_margin_with_shield(target, combatant, weapon, attack_roll, defense_roll)
+      #if stopped_by_shield && hit == true
+      #  hit = stopped_by_shield[:hit]
+      #  message = stopped_by_shield[:message]
+      #end
 
      combatant.log "Attack Margin: mod=#{mod} called=#{called_shot} " +
      " attack=#{attack_roll} defense=#{defense_roll} hit=#{hit} cover=#{stopped_by_cover} shield=#{stopped_by_shield } result=#{message}"
