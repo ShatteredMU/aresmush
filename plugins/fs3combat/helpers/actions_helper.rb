@@ -250,7 +250,8 @@ module AresMUSH
       return 0 if armor.blank?
       pen = FS3Combat.weapon_stat(weapon, "penetration")
       protect = FS3Combat.armor_stat(armor, "protection")[hitloc]
-      shield = Magic.find_best_shield(target, damage_type)
+      damage_type = Magic.magic_damage_type(weapon)
+      shield = Magic.find_best_shield(combatant, damage_type)
       shield_protect = shield.strength
 
       # Armor doesn't cover this hit location
