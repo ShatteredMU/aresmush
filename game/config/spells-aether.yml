@@ -243,7 +243,7 @@ spells:
     available: true
     casting_time: 1 round
     damage_type: Bypass
-    desc: 'Draw all oxygen from an area, dousing any flames present and creating oxygen deprivation for an air-breathing creature of your choice caught in its range.'
+    desc: 'Draw all oxygen from an area, dousing any flames present and creating oxygen deprivation for an air-breathing creature of your choice caught in its range. Without air, they struggle to function, stunning them for one round.'
     duration: 1 round
     effect: Damage
     fs3_attack: true
@@ -443,7 +443,7 @@ spells:
     available: true
     casting_time: 1 round
     damage_type: Bypass
-    desc: "Draw the air from a small area, making it impossible for targets within it to breathe. \n\nDoes not affect enemies who do not breathe air."
+    desc: "Draw the air from a small area, making it impossible for targets within it to breathe. Without air, they struggle to function, stunning them for two rounds. \n\nDoes not affect enemies who do not breathe air."
     effect: Damage
     fs3_attack: true
     level: 8
