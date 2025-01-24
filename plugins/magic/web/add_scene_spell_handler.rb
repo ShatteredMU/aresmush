@@ -58,17 +58,18 @@ module AresMUSH
         print_names = Magic.print_target_names(targets)
 
         success = Magic.roll_noncombat_spell(caster, spell, mod)
+        messages = success[:messages]
         if success[:succeeds] == "%xgSUCCEEDS%xn"
-          message = Magic.cast_noncombat_spell(caster.name, targets, spell, mod, success[:result])
+          messages.concat Magic.cast_noncombat_spell(caster.name, targets, spell, mod, success[:result])
           Magic.handle_spell_cast_achievement(caster)
         else
           if target_name_arg.blank?
-            message = [t('magic.casts_spell', :name => caster.name, :spell => spell, :mod => mod, :succeeds => success[:succeeds])]
+            messages.concat [t('magic.casts_spell', :name => caster.name, :spell => spell, :mod => mod, :succeeds => success[:succeeds])]
           else
-            message = [t('magic.casts_spell_on_target', :name => caster.name, :spell => spell, :mod => mod, :target => print_names, :succeeds => success[:succeeds])]
+            messages.concat [t('magic.casts_spell_on_target', :name => caster.name, :spell => spell, :mod => mod, :target => print_names, :succeeds => success[:succeeds])]
           end
         end
-        message.each do |msg|
+        messages.each do |msg|
           Scenes.add_to_scene(scene, msg)
           if (scene.room)
             scene.room.emit msg
