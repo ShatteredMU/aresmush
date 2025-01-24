@@ -76,7 +76,6 @@ module AresMUSH
 
     def self.leave_combat(combat, combatant)
       FS3Combat.emit_to_combat combat, t('fs3combat.has_left', :name => combatant.name)
-      combatant.mount.death_count = 0
       combatant.delete
     end
 
