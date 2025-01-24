@@ -447,6 +447,8 @@ spells:
     effect: Damage
     fs3_attack: true
     level: 8
+    is_stun: true
+    rounds: 2
     line_of_sight: true
     name: Suffocate
     range: Long
