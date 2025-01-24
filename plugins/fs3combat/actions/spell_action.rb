@@ -99,6 +99,7 @@ module AresMUSH
         #Spells roll for success individually because they can only do one thing. This is because attacks need to use different measures of success. Also, because weapon changes for FS3 attacks are on the caster, not the target.
 
         if (spell['fs3_attack'] || spell['is_stun'])
+        #if (spell['fs3_attack'])
 
           if succeeds[:succeeds] == "%xgSUCCEEDS%xn"
             #Weapon
@@ -111,6 +112,11 @@ module AresMUSH
               if spell['is_stun']
                 message = Magic.cast_stun(self.caster_name, self.combatant, target, self.spell_name, spell['rounds'], result = succeeds[:result])
                 messages.concat message
+                #Add functionality to do stun AND attack
+                if (spell['fs3_attack'])
+                  message = Magic.cast_attack_target(self.caster_name, self.combatant, target, result = succeeds[:result])
+                  messages.concat message
+                end
               elsif weapon_type == "Explosive"
                 message = Magic.cast_explosion(self.caster_name, self.combatant, target, self.spell_name, result = succeeds[:result])
                 messages.concat message
