@@ -367,7 +367,7 @@ fs3combat:
       init_mod: 0
     Stun (Aether):
       description: Stun spell
-      is_magic: x
+      is_magic: true
       skill: Aether
       lethality: 0
       penetration: 0
@@ -376,6 +376,7 @@ fs3combat:
       damage_type: Physical
       accuracy: 0
       init_mod: 0
+      special_group: Spell
     Stun (Arcane):
       description: Stun spell
       is_magic: true
@@ -388,6 +389,7 @@ fs3combat:
       magic_damage_type: Psionic
       accuracy: 0
       init_mod: 0
+      special_group: Spell
     Stun (Creation):
       description: Stun spell
       is_magic: true
@@ -399,6 +401,7 @@ fs3combat:
       damage_type: Physical
       accuracy: 0
       init_mod: 0
+      special_group: Spell
     Stun (Entropy):
       description: Stun spell
       is_magic: true
@@ -410,6 +413,7 @@ fs3combat:
       damage_type: Physical
       accuracy: 0
       init_mod: 0
+      special_group: Spell
 #---------------
 # WEAPON SPECIAL GROUPS
 #---------------
