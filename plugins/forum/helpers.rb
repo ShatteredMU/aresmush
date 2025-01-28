@@ -98,7 +98,7 @@ module AresMUSH
         }
         Forum.notify(new_post, category, :new_forum_post, message, data)
         Achievements.award_achievement(author, "forum_post")
-        Forum.add_to_recent_changes(post, author, message)
+        Forum.add_to_recent_changes(new_post, author, message, message)
 
         new_post
       end
@@ -142,7 +142,7 @@ module AresMUSH
       if (post.author && author != post.author)
         Login.notify(post.author, :forum, t('forum.new_forum_reply', :subject => post.subject), post.id, "#{category.id}|#{post.id}")
       end
-      Forum.add_to_recent_changes(new_reply.id, author, message, reply)
+      Forum.add_to_recent_changes(new_reply.id, author.name, message, reply)
 
     end
 
