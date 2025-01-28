@@ -37,6 +37,7 @@ module AresMUSH
       changes[0..limit].map { |c| {
         type: c['type'],
         message: c['message'],
+        summary: c['summary'],
         data: c['data'],
         timestamp: OOCTime.local_long_timestr(viewer, c['timestamp']),
         author: c['author']
