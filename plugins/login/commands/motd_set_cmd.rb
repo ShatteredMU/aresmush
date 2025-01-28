@@ -22,8 +22,8 @@ module AresMUSH
         end
         Website.add_to_recent_changes(
           'motd',
-          Website.format_input_for_html(self.notice),
-          { id: "motd-#{Time.now.strftime("%d/%m/%Y")}" },
+          Website.format_input_for_html(t('login.motd_announce', :enactor => enactor_name, :message => self.notice)),
+          { id: "motd-#{Time.now.strftime("%d/%m/%Y- %H:%M")}" },
           enactor.name,
           Website.format_input_for_html(self.notice)
         )
