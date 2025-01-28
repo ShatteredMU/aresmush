@@ -77,12 +77,19 @@ module AresMUSH
 
       participants = scene.participants.to_a.map { |p| p.name }.join(", ")
       content_warning = !scene.content_warning.empty? ? " [#{scene.content_warning}] " : ""
+      summary = t(
+        'scenes.scene_shared_summary',
+        :summary => Website.format_input_for_html(scene.summary),
+        :content_warning => content_warning,
+        :participants => participants
+        )
+
       Website.add_to_recent_changes(
         'scene',
         message,
         { id: scene.id },
         enactor.name,
-        t('scenes.scene_shared_summary', :summary => scene.summary, :content_warning => content_warning, :participants => participants)
+        summary
       )
     end
 
