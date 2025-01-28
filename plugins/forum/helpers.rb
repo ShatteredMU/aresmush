@@ -154,7 +154,8 @@ module AresMUSH
     end
 
     def self.add_to_recent_changes(category_id, post_id, enactor, message, summary, reply_id = nil)
-      recent_changes = Game.master.recent_changes.delete_if {|change| change['type'] == "forum" && change['data']['id'] == post_id}
+      id = [category_id, post_id, reply_id].compact
+      recent_changes = Game.master.recent_changes.delete_if {|change| change['type'] == "forum" && change['data']['id'] == id}
       Game.master.update(recent_changes: recent_changes)
 
       id = [category_id, post_id, reply_id].compact
