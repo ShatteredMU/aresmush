@@ -87,7 +87,7 @@ module AresMUSH
       Website.add_to_recent_changes(
         'scene',
         message,
-        { id: scene.id },
+        { id: scene.id, class_id: scene.id },
         enactor.name,
         summary
       )

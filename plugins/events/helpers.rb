@@ -195,7 +195,7 @@ module AresMUSH
       Website.add_to_recent_changes(
         'event',
         Website.format_input_for_html(message),
-        { id: event.id },
+        { id: event.id, class_id: event.id },
         enactor.name,
         Website.format_input_for_html(summary)
       )

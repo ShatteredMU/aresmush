@@ -83,7 +83,7 @@ module AresMUSH
         author_name = author.name
         title = t('forum.web_new_post', :subject => subject,
         :author => author_name)
-        Forum.add_to_recent_changes(new_post, author, title, message)
+        Forum.add_to_recent_changes(new_post.id, author, title, message)
 
         message = t('forum.new_post', :subject => subject,
           :category => category.name,
@@ -149,18 +149,20 @@ module AresMUSH
       end
       title = t('forum.web_new_reply', :subject => post.subject,
         :author => author_name)
-      Forum.add_to_recent_changes(category, new_reply, author, title, reply)
+      Forum.add_to_recent_changes(category, post.id, author, title, reply, new_reply.id)
 
     end
 
-    def self.add_to_recent_changes(category, post, enactor, message, summary)
-      recent_changes = Game.master.recent_changes.delete_if {|change| change['type'] == "forum" && change['data']['id'] == post.id}
+    def self.add_to_recent_changes(category, post_id, enactor, message, summary, reply_id = nil)
+      recent_changes = Game.master.recent_changes.delete_if {|change| change['type'] == "forum" && change['data']['id'] == post_id}
       Game.master.update(recent_changes: recent_changes)
+
+      id = [category.id, post_id, reply_id].compact
 
       Website.add_to_recent_changes(
         'forum',
         Website.format_input_for_html(message),
-        { id: [category.id, post.id] },
+        { id: id, class_id: reply_id || post_id },
         enactor.name,
         Website.format_input_for_html(summary)
       )
@@ -285,7 +287,7 @@ module AresMUSH
 
       title = t('forum.web_new_edit', :subject => post.subject,
       :author => author_name)
-      Forum.add_to_recent_changes(post, enactor, title, message)
+      Forum.add_to_recent_changes(post.id, enactor, title, message)
 
       Forum.notify(post, category, :forum_edited, notification, data)
       Forum.mark_read_for_player(enactor, post)
@@ -316,7 +318,7 @@ module AresMUSH
       Forum.mark_read_for_player(enactor, post)
       title = t('forum.web_new_reply_edit', :subject => post.subject,
       :author => author_name)
-      Forum.add_to_recent_changes(reply, enactor, title, message)
+      Forum.add_to_recent_changes(post.id, enactor, title, message, reply.id)
     end
 
     def self.catchup_category(enactor, category)
