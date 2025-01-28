@@ -77,10 +77,12 @@ module AresMUSH
       content_warning: warning)
 
       Website.update_tags(event, tags)
-      Channels.announce_notification(t('events.event_created_notification', :title => title))
+      message = t('events.event_created_notification', :title => title)
+      Channels.announce_notification(message)
       Events.events_updated
       Achievements.award_achievement(enactor, "event_created")
       PostEvent.create_forum_post(event)
+      Events.add_to_recent_changes(event, enactor, message)
       return event
     end
 
@@ -91,7 +93,7 @@ module AresMUSH
         Login.notify(s.character, :event, message, event.id)
       end
       Channels.announce_notification(message)
-
+      Events.add_to_recent_changes(event, enactor, message)
       event.delete
       Events.events_updated
     end
@@ -109,6 +111,7 @@ module AresMUSH
         Login.notify(s.character, :event, message, event.id)
       end
       Channels.announce_notification(message)
+      Events.add_to_recent_changes(event, enactor, message)
       if Global.read_config("postevent", "reply_on_edit") then PostEvent.reply_to_forum_post(event) end
     end
 
@@ -165,11 +168,11 @@ module AresMUSH
       return true if Events.can_manage_event?(enactor, event)
       AresCentral.is_alt?(enactor, char)
     end
-    
-    def self.create_event_scene(event, enactor)      
+
+    def self.create_event_scene(event, enactor)
       scene = Scenes.start_scene(enactor, "Event #{event.title}", false, Scenes.scene_types.first, true)
       scene.update(title: event.title)
-      
+
       Scenes.add_participant(scene, enactor, enactor)
       event.signups.each do |signup|
         invitee = signup.character
@@ -177,9 +180,27 @@ module AresMUSH
           Scenes.invite_to_scene(scene, invitee, enactor)
         end
       end
-      
+
       scene
     end
-    
+
+    def self.add_to_recent_changes(event, enactor, message)
+      recent_changes = Game.master.recent_changes.delete_if {|change| change['type'] == "event" && change['data']['id'] == event.id}
+      Game.master.update(recent_changes: recent_changes)
+
+      content_warning = !event.content_warning.empty? ? " [#{event.content_warning}] " : ""
+
+      summary = t('events.event_summary', :title => event.title, :starts=> event.starts, :desc => event.description, :organizer => event.character.name, :content_warning => content_warning)
+
+      Website.add_to_recent_changes(
+        'event',
+        Website.format_input_for_html(message),
+        { id: event.id },
+        enactor.name,
+        Website.format_input_for_html(summary)
+      )
+    end
+
+
   end
 end

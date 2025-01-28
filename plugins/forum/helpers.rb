@@ -160,7 +160,7 @@ module AresMUSH
       Website.add_to_recent_changes(
         'forum',
         Website.format_input_for_html(message),
-        { id: "#{category.id}/#{post.id}" },
+        { id: [category.id, post.id] },
         enactor.name,
         Website.format_input_for_html(summary)
       )
