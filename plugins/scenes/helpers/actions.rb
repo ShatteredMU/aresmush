@@ -62,7 +62,7 @@ module AresMUSH
       Scenes.add_recent_scene(scene)
 
       Scenes.new_scene_activity(scene, :status_changed, nil)
-      participants = scene.participants.to_a.map { |p| p.name }.join(",")
+      participants = scene.participants.to_a.map { |p| p.name }.join(" ,")
       content_warning = !scene.content_warning.empty? ? " [#{scene.content_warning}] " : ""
       Website.add_to_recent_changes(
         'scene',
