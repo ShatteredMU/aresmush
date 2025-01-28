@@ -283,6 +283,10 @@ module AresMUSH
         type: 'forum_edited'
       }
 
+      title = t('forum.web_new_edit', :subject => post.subject,
+      :author => author_name)
+      Forum.add_to_recent_changes(post, enactor, title, message)
+
       Forum.notify(post, category, :forum_edited, notification, data)
       Forum.mark_read_for_player(enactor, post)
     end
@@ -310,6 +314,9 @@ module AresMUSH
 
       Forum.notify(post, category, :reply_edited, notification, data)
       Forum.mark_read_for_player(enactor, post)
+      title = t('forum.web_new_reply_edit', :subject => post.subject,
+      :author => author_name)
+      Forum.add_to_recent_changes(reply, enactor, title, message)
     end
 
     def self.catchup_category(enactor, category)
