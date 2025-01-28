@@ -62,7 +62,19 @@ module AresMUSH
       Scenes.add_recent_scene(scene)
 
       Scenes.new_scene_activity(scene, :status_changed, nil)
-      participants = scene.participants.to_a.map { |p| p.name }.join(" ,")
+
+      Global.dispatcher.queue_event SceneSharedEvent.new(scene.id)
+
+      return true
+    end
+
+    def self.add_to_recent_changes(scene)
+      dupes = Game.master.recent_changes.select {|change| change['type'] == "scene" && change['data']['id'] == scene.id}
+      if dupes
+        dupes.each { |dupe| Game.master.recent_changes.delete dupe }
+      end
+
+      participants = scene.participants.to_a.map { |p| p.name }.join(", ")
       content_warning = !scene.content_warning.empty? ? " [#{scene.content_warning}] " : ""
       Website.add_to_recent_changes(
         'scene',
@@ -71,9 +83,6 @@ module AresMUSH
         enactor.name,
         t('scenes.scene_shared_summary', :summary => scene.summary, :content_warning => content_warning, :participants => participants)
       )
-      Global.dispatcher.queue_event SceneSharedEvent.new(scene.id)
-
-      return true
     end
 
     def self.stop_scene(scene, enactor)
