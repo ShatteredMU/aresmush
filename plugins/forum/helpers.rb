@@ -100,7 +100,7 @@ module AresMUSH
           raw_message: Website.format_input_for_html(message),
           type: 'new_forum_post'
         }
-        Forum.notify(new_post, category, :new_forum_post, message, data)
+        Forum.notify(category, new_post, category, :new_forum_post, message, data)
         Achievements.award_achievement(author, "forum_post")
 
         new_post
@@ -149,18 +149,18 @@ module AresMUSH
       end
       title = t('forum.web_new_reply', :subject => post.subject,
         :author => author_name)
-      Forum.add_to_recent_changes(new_reply, author, title, reply)
+      Forum.add_to_recent_changes(category, new_reply, author, title, reply)
 
     end
 
-    def self.add_to_recent_changes(post, enactor, message, summary)
+    def self.add_to_recent_changes(category, post, enactor, message, summary)
       recent_changes = Game.master.recent_changes.delete_if {|change| change['type'] == "forum" && change['data']['id'] == post.id}
       Game.master.update(recent_changes: recent_changes)
 
       Website.add_to_recent_changes(
         'forum',
         Website.format_input_for_html(message),
-        { id: post.id },
+        { id: "#{category.id}/#{post.id}" },
         enactor.name,
         Website.format_input_for_html(summary)
       )
