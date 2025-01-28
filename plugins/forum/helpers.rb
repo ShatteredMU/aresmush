@@ -145,7 +145,7 @@ module AresMUSH
       if (post.author && author != post.author)
         Login.notify(post.author, :forum, t('forum.new_forum_reply', :subject => post.subject), post.id, "#{category.id}|#{post.id}")
       end
-      Forum.add_to_recent_changes(post, author.name, message, reply)
+      Forum.add_to_recent_changes(post, author, message, reply)
 
     end
 
