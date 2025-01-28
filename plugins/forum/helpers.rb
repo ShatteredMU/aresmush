@@ -100,7 +100,7 @@ module AresMUSH
           raw_message: Website.format_input_for_html(message),
           type: 'new_forum_post'
         }
-        Forum.notify(category, new_post, category, :new_forum_post, message, data)
+        Forum.notify(new_post, category, :new_forum_post, message, data)
         Achievements.award_achievement(author, "forum_post")
 
         new_post
