@@ -26,7 +26,8 @@ module AresMUSH
           end
 
           Scenes.add_log_version(scene, request.args[:log], enactor)
-          Website.add_to_recent_changes('scene', t('scenes.scene_updated', :title => scene.title), { id: scene.id }, enactor.name)
+          message = t('scenes.scene_updated', :title => scene.title)
+          Scenes.add_to_recent_changes(scene, enactor, message)
 
         end
 

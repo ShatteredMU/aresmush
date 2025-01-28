@@ -41,6 +41,8 @@ module AresMUSH
       end
       Scenes.remove_recent_scene(scene)
       Scenes.new_scene_activity(scene, :status_changed, nil)
+      recent_changes = Game.master.recent_changes.delete_if {|change| change['type'] == "scene" && change['data']['id'] == scene.id}
+      Game.master.update(recent_changes: recent_changes)
     end
 
     def self.share_scene(enactor, scene)
@@ -60,7 +62,8 @@ module AresMUSH
 
       Scenes.create_log(enactor, scene)
       Scenes.add_recent_scene(scene)
-      Scenes.add_to_recent_changes(scene, enactor)
+      message = t('scenes.scene_shared', :icdate => scene.icdate, :title => scene.title)
+      Scenes.add_to_recent_changes(scene, enactor, message)
       Scenes.new_scene_activity(scene, :status_changed, nil)
 
       Global.dispatcher.queue_event SceneSharedEvent.new(scene.id)
@@ -68,7 +71,7 @@ module AresMUSH
       return true
     end
 
-    def self.add_to_recent_changes(scene, enactor)
+    def self.add_to_recent_changes(scene, enactor, message)
       recent_changes = Game.master.recent_changes.delete_if {|change| change['type'] == "scene" && change['data']['id'] == scene.id}
       Game.master.update(recent_changes: recent_changes)
 
@@ -76,7 +79,7 @@ module AresMUSH
       content_warning = !scene.content_warning.empty? ? " [#{scene.content_warning}] " : ""
       Website.add_to_recent_changes(
         'scene',
-        t('scenes.scene_shared', :icdate => scene.icdate, :title => scene.title),
+        message,
         { id: scene.id },
         enactor.name,
         t('scenes.scene_shared_summary', :summary => scene.summary, :content_warning => content_warning, :participants => participants)
