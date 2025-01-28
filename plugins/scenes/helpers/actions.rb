@@ -60,7 +60,7 @@ module AresMUSH
 
       Scenes.create_log(enactor, scene)
       Scenes.add_recent_scene(scene)
-      Scenes.add_to_recent_changes(scene)
+      Scenes.add_to_recent_changes(scene, enactor)
       Scenes.new_scene_activity(scene, :status_changed, nil)
 
       Global.dispatcher.queue_event SceneSharedEvent.new(scene.id)
@@ -68,7 +68,7 @@ module AresMUSH
       return true
     end
 
-    def self.add_to_recent_changes(scene)
+    def self.add_to_recent_changes(scene, enactor)
       dupes = Game.master.recent_changes.select {|change| change['type'] == "scene" && change['data']['id'] == scene.id}
       if dupes
         dupes.each { |dupe| Game.master.recent_changes.delete dupe }
