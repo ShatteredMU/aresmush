@@ -27,8 +27,6 @@ module AresMUSH
 
           Scenes.add_log_version(scene, request.args[:log], enactor)
           message = t('scenes.scene_updated', :title => scene.title)
-          Scenes.add_to_recent_changes(scene, enactor, message)
-
         end
 
         scene.update(location: request.args[:location])
@@ -116,6 +114,8 @@ module AresMUSH
             end
           end
         end
+
+        Scenes.add_to_recent_changes(scene, enactor, message) if scene.shared
 
         {}
       end
