@@ -81,7 +81,11 @@ module AresMUSH
         end
 
         author_name = author.name
-        notification_message = t('forum.new_post', :subject => subject,
+        title = t('forum.web_new_post', :subject => subject,
+        :author => author_name)
+        Forum.add_to_recent_changes(new_post, author, title, message)
+
+        message = t('forum.new_post', :subject => subject,
           :category => category.name,
           :reference => new_post.reference_str,
           :author => author_name)
@@ -96,9 +100,8 @@ module AresMUSH
           raw_message: Website.format_input_for_html(message),
           type: 'new_forum_post'
         }
-        Forum.notify(new_post, category, :new_forum_post, notification_message, data)
+        Forum.notify(new_post, category, :new_forum_post, message, data)
         Achievements.award_achievement(author, "forum_post")
-        Forum.add_to_recent_changes(new_post, author, notification_message, message)
 
         new_post
       end
@@ -152,10 +155,10 @@ module AresMUSH
 
       Website.add_to_recent_changes(
         'forum',
-        message,
+        Website.format_input_for_html(message),
         { id: post.id },
         enactor.name,
-        summary
+        Website.format_input_for_html(summary)
       )
     end
 
