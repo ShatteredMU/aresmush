@@ -122,16 +122,18 @@ module AresMUSH
       Forum.mark_unread(post)
       Forum.mark_read_for_player(author, post)
 
+      author_name = author.name
+
       message = t('forum.new_reply', :subject => post.subject,
         :category => category.name,
         :reference => post.reference_str,
-        :author => author.name)
+        :author => author_name)
 
         data = {
           category: category.id,
           post: post.id,
           reply: new_reply.id,
-          author: { name: author.name, icon: Website.icon_for_char(author), id: author.id },
+          author: { name: author_name, icon: Website.icon_for_char(author), id: author.id },
           subject: post.subject,
           message: Website.format_markdown_for_html(reply),
           raw_message: Website.format_input_for_html(reply),
@@ -145,7 +147,9 @@ module AresMUSH
       if (post.author && author != post.author)
         Login.notify(post.author, :forum, t('forum.new_forum_reply', :subject => post.subject), post.id, "#{category.id}|#{post.id}")
       end
-      Forum.add_to_recent_changes(post, author, message, reply)
+      title = t('forum.web_new_reply', :subject => subject,
+        :author => author_name)
+      Forum.add_to_recent_changes(new_reply, author, title, reply)
 
     end
 
