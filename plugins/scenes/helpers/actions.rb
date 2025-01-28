@@ -70,6 +70,7 @@ module AresMUSH
 
     def self.add_to_recent_changes(scene, enactor)
       dupes = Game.master.recent_changes.select {|change| change['type'] == "scene" && change['data']['id'] == scene.id}
+      puts "Dupes: #{dupes}"
       if dupes
         dupes.each { |dupe| Game.master.recent_changes.delete dupe }
       end
