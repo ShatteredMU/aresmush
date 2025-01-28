@@ -78,7 +78,7 @@ en:
         stopped_watching: "%{name} is no longer watching via the web portal."
 
         scene_shared: "%{icdate} - %{title} shared."
-        scene_shared_summary: "%{summary}%{content_warning} (%{particpants})"
+        scene_shared_summary: "%{summary}%{content_warning} (%{participants})"
         scene_already_shared: "That scene is already shared."
         scene_not_shared: "That scene is not shared."
         no_scene_room: "That scene doesn't have a room to join.  That can happen if it's created from the web portal."
