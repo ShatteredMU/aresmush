@@ -163,7 +163,7 @@ module AresMUSH
       Website.add_to_recent_changes(
         'forum',
         Website.format_input_for_html(message),
-        { id: id, class_id: reply_id || post_id },
+        { id: id, class_id: id.joins("-") },
         enactor.name,
         Website.format_input_for_html(summary)
       )
