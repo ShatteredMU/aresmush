@@ -1,12 +1,13 @@
 module AresMUSH
   module Website
-    def self.add_to_recent_changes(type, message, data, author_name)
+    def self.add_to_recent_changes(type, message, data, author_name, summary = nil)
       changes = Game.master.recent_changes || []
-      change_data = { 'type' => type, 
-        'data' => data, 
-        'message' => message, 
-        'author' => author_name, 
-        'timestamp' => Time.now 
+      change_data = { 'type' => type,
+        'data' => data,
+        'message' => message,
+        'author' => author_name,
+        'timestamp' => Time.now,
+        'summary' => summary
       }
       changes.unshift(change_data)
       if (changes.count > 99)
@@ -14,11 +15,11 @@ module AresMUSH
       end
       Game.master.update(recent_changes: changes)
     end
-    
+
     def self.recent_changes(viewer, unique_only = false, limit = 50)
       all_changes = Game.master.recent_changes || []
       changes = []
-      
+
       if (unique_only)
         found = []
         all_changes.each do |c|
@@ -31,7 +32,7 @@ module AresMUSH
       else
         changes = all_changes
       end
-      
+
       changes[0..limit].map { |c| {
         type: c['type'],
         message: c['message'],
@@ -40,7 +41,7 @@ module AresMUSH
         author: c['author']
       } }
     end
-    
+
     def self.build_sitemap
       list = []
       list << { 'url' => Game.web_portal_url, 'lastmod' => Time.now }
@@ -61,12 +62,12 @@ module AresMUSH
       list <<{ 'url' =>  "#{Game.web_portal_url}/help", 'lastmod' => Time.now }
       topics = Help.topic_keys.map { |k, v| v }.uniq
       topics.each { |h| list << { 'url' => "#{Game.web_portal_url}/help/#{h}", 'lastmod' => Time.now } }
-      
+
       BbsPost.all.select{ |b| b.is_public? }
          .each { |b| list << { 'url' => "#{Game.web_portal_url}/forum/#{b.bbs_board.id}/#{b.id}", 'lastmod' => Time.now } }
-      
+
       list
     end
-    
+
   end
 end
