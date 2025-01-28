@@ -69,11 +69,8 @@ module AresMUSH
     end
 
     def self.add_to_recent_changes(scene, enactor)
-      dupes = Game.master.recent_changes.select {|change| change['type'] == "scene" && change['data']['id'] == scene.id}
-      puts "Dupes: #{dupes}"
-      if dupes
-        dupes.each { |dupe| Game.master.recent_changes.delete dupe }
-      end
+      recent_changes = Game.master.recent_changes.delete_if {|change| change['type'] == "scene" && change['data']['id'] == scene.id}
+      Game.master.update(recent_changes: recent_changes)
 
       participants = scene.participants.to_a.map { |p| p.name }.join(", ")
       content_warning = !scene.content_warning.empty? ? " [#{scene.content_warning}] " : ""
