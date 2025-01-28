@@ -60,7 +60,7 @@ module AresMUSH
 
       Scenes.create_log(enactor, scene)
       Scenes.add_recent_scene(scene)
-
+      Scenes.add_to_recent_changes(scene)
       Scenes.new_scene_activity(scene, :status_changed, nil)
 
       Global.dispatcher.queue_event SceneSharedEvent.new(scene.id)
