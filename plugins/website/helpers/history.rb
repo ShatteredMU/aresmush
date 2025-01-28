@@ -1,6 +1,7 @@
 module AresMUSH
   module Website
     def self.add_to_recent_changes(type, message, data, author_name, summary = nil)
+      puts "DEBUG: Adding to recent changes"
       changes = Game.master.recent_changes || []
       change_data = { 'type' => type,
         'data' => data,

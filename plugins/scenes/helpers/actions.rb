@@ -66,8 +66,7 @@ module AresMUSH
       content_warning = scene.content_warning ? " [#{scene.content_warning}] " : ""
       Website.add_to_recent_changes(
         'scene',
-        t('scenes.scene_shared',
-        :title => scene.title),
+        t('scenes.scene_shared', :icdate => scene.icdate, :title => scene.title),
         { id: scene.id },
         enactor.name,
         t('scenes.scene_shared_summary', :summary => scene.summary, :content_warning => content_warning, :participants => participants)
