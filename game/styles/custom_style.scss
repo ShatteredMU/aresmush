@@ -1248,7 +1248,7 @@ button {
 }
 
 .recent-activity-summary-tool {
-	margin-right: 5px;
+	margin-left: 5px;
 }
 
 .activity-card {
@@ -1256,10 +1256,13 @@ button {
 	background: #141d2a;
 	border: 1px solid black;
 	margin: 5px;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .activity-card-header{
 	display: flex;
+	flex-wrap: wrap;
 }
 
 .activity-card-footer {
