@@ -1252,6 +1252,12 @@ button {
 	margin-left: 5px;
 }
 
+@media screen and (max-width: 767px) {
+	.recent-activity-summary-tool {
+		margin-top: -25px;
+	}
+}
+
 .activity-card {
 	padding: 15px;
 	background: #141d2a;
@@ -1270,6 +1276,10 @@ button {
 .activity-card-header{
 	display: flex;
 	flex-wrap: wrap;
+}
+
+.activity-card-mobile-header {
+	display: flex;
 }
 
 .activity-card-footer {

@@ -79,7 +79,7 @@ module AresMUSH
       content_warning = !scene.content_warning.empty? ? " [#{scene.content_warning}] " : ""
       summary = t(
         'scenes.scene_shared_summary',
-        :summary => Website.format_input_for_html(scene.summary),
+        :summary => Website.format_markdown_for_html(scene.summary),
         :content_warning => content_warning,
         :participants => participants
         )

@@ -30,7 +30,7 @@ en:
         event_deleted_notification: "Event '%{title}' has been deleted."
         event_updated_notification: "Event '%{title}' has been updated."
         event_created_notification: "Event '%{title}' has been created."
-        event_summary: "%{title} - %{starts} - %{desc}%{content_warning} (%{organizer})"
+        event_summary: "%{desc}\n\n%{starts}\n\n%{content_warning} (%{organizer})"
 
         event_updated_change: "%{title} updated."
         event_deleted_change: "%{title} deleted."

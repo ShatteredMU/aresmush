@@ -162,10 +162,10 @@ module AresMUSH
 
       Website.add_to_recent_activity(
         'forum',
-        Website.format_input_for_html(message),
+        Website.format_markdown_for_html(message),
         { id: id, class_id: id.join("-"), icon: 'fa-comments' },
         enactor.name,
-        Website.format_input_for_html(summary)
+        Website.format_markdown_for_html(summary)
       )
     end
 

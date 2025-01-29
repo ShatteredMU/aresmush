@@ -26,10 +26,10 @@ module AresMUSH
         Game.master.update(recent_activity: recent_activity)
         Website.add_to_recent_activity(
           'motd',
-          Website.format_input_for_html(t('login.motd_announce', :enactor => enactor_name, :message => "")),
+          Website.format_markdown_for_html(t('login.motd_announce', :enactor => enactor_name, :message => "")),
           { class_id: id, icon: 'fa-scroll' },
           enactor.name,
-          Website.format_input_for_html(self.notice)
+          Website.format_markdown_for_html(self.notice)
         )
       end
     end
