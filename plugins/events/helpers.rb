@@ -190,7 +190,7 @@ module AresMUSH
 
       content_warning = !event.content_warning.empty? ? " [#{event.content_warning}] " : ""
 
-      summary = t('events.event_summary', :title => event.title, :starts=> event.start_time_standard, :desc => event.description, :organizer => event.character.name, :content_warning => content_warning)
+      summary = t('events.event_summary', :starts=> event.start_time_standard, :desc => event.description, :organizer => event.character.name, :content_warning => content_warning)
 
       Website.add_to_recent_activity(
         'event',
