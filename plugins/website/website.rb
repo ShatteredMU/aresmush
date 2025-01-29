@@ -141,7 +141,7 @@ module AresMUSH
         return MarkdownPreviewRequestHandler
       when "recentChanges"
         return GetRecentChangesRequestHandler
-      when "recentActivities"
+      when "recentActivity"
         return GetRecentActivityRequestHandler
       when "sidebarInfo"
         return GetSidebarInfoRequestHandler
