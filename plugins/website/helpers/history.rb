@@ -1,18 +1,20 @@
 module AresMUSH
   module Website
-    def self.add_to_recent_changes(type, message, data, author_name, summary = nil)
-      puts "DEBUG: Adding to recent changes"
+    def self.add_to_recent_changes(type, message, data, author_name)
       changes = Game.master.recent_changes || []
       change_data = { 'type' => type,
         'data' => data,
         'message' => message,
         'author' => author_name,
-        'timestamp' => Time.now,
-        'summary' => summary
+        'timestamp' => Time.now
       }
       changes.unshift(change_data)
       if (changes.count > 99)
         changes.pop
+      end
+      activity_types = ["plot", "wiki", "creature"]
+      if activity_types.include?(type)
+        Website.add_to_recent_activity(type, message, data, author_name)
       end
       Game.master.update(recent_changes: changes)
     end

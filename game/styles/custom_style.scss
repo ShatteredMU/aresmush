@@ -1241,8 +1241,17 @@ button {
 	border: solid 1px #5d6168;
 }
 
-.recent-changes-summary {
+.recent-activity-summary {
 	background: #7588a8 !important;
+	display: block;
+  padding: 10px !important;
+}
+
+.activity-card {
+	padding: 15px;
+	background: #141d2a;
+	border: 1px solid black;
+	margin: 5px;
 }
 
 .tab-cover {
