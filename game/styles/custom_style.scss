@@ -1259,6 +1259,11 @@ button {
 	margin: 5px;
 	display: flex;
 	flex-wrap: wrap;
+
+	fa {
+		font-size: 150%;
+		margin-top: -7px;
+	}
 }
 
 .activity-card-header{
