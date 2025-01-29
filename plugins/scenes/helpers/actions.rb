@@ -76,7 +76,7 @@ module AresMUSH
       Game.master.update(recent_activity: recent_activity)
 
       participants = scene.participants.to_a.map { |p| p.name }.join(", ")
-      content_warning = !scene.content_warning.empty? ? " [#{scene.content_warning}] " : ""
+      content_warning = !scene.content_warning.empty? ? "Content Warning: #{scene.content_warning} \n\n" : ""
       summary = t(
         'scenes.scene_shared_summary',
         :summary => Website.format_markdown_for_html(scene.summary),
