@@ -44,6 +44,49 @@ module AresMUSH
       } }
     end
 
+    def self.add_to_recent_activity(type, message, data, author_name, summary = nil)
+      activities = Game.master.recent_activity || []
+      activity_data = { 'type' => type,
+        'data' => data,
+        'message' => message,
+        'author' => author_name,
+        'timestamp' => Time.now,
+        'summary' => summary
+      }
+      activities.unshift(activity_data)
+      if (activities.count > 99)
+        activities.pop
+      end
+      Game.master.update(recent_activity: activities)
+    end
+
+    def self.recent_activity(viewer, unique_only = false, limit = 50)
+      all_changes = Game.master.recent_activity || []
+      changes = []
+
+      if (unique_only)
+        found = []
+        all_changes.each do |c|
+          key = "#{c['message']}#{c['type']}"
+          if (!found.include?(key))
+            found << key
+            changes << c
+          end
+        end
+      else
+        changes = all_changes
+      end
+
+      changes[0..limit].map { |c| {
+        type: c['type'],
+        message: c['message'],
+        summary: c['summary'],
+        data: c['data'],
+        timestamp: OOCTime.local_long_timestr(viewer, c['timestamp']),
+        author: c['author']
+      } }
+    end
+
     def self.build_sitemap
       list = []
       list << { 'url' => Game.web_portal_url, 'lastmod' => Time.now }

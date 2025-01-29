@@ -4,26 +4,26 @@ require 'diffy'
 
 module AresMUSH
   module Website
-        
+
     def self.plugin_dir
       File.dirname(__FILE__)
     end
- 
+
     def self.shortcuts
       Global.read_config('website', 'shortcuts')
     end
-    
+
     def self.achievements
       Global.read_config('website', 'achievements')
     end
-    
+
     def self.init_plugin
       Website.rebuild_css
     end
-    
-    def self.get_cmd_handler(client, cmd, enactor)       
-      
-      case cmd.root      
+
+    def self.get_cmd_handler(client, cmd, enactor)
+
+      case cmd.root
       when "website"
         if (cmd.switch_is?("deploy"))
           return WebsiteDeployCmd
@@ -33,11 +33,11 @@ module AresMUSH
           return WebsiteCmd
         end
       end
-      
+
       nil
     end
 
-    def self.get_event_handler(event_name) 
+    def self.get_event_handler(event_name)
       case event_name
         when "WebCmdEvent"
           return WebCmdEventHandler
@@ -46,14 +46,14 @@ module AresMUSH
         when "CronEvent"
           return WebCronEventHandler
       end
-      
+
       nil
     end
-    
-    
+
+
     def self.get_web_request_handler(request)
       case request.cmd
-        
+
       ## WIKI
       when "blankWiki"
         return GetBlankWikiPageRequestHandler
@@ -103,7 +103,7 @@ module AresMUSH
         return GetLogRequestHandler
       when "webError"
         return WebErrorRequestHandler
-      
+
       ## TINKER
       when "getTinker"
         return GetTinkerRequestHandler
@@ -125,7 +125,7 @@ module AresMUSH
         return GetColorsRequestHandler
       when "saveColors"
         return SaveColorsRequestHandler
-        
+
       ## MISC
       when "game"
         return GetGameInfoRequestHandler
@@ -141,6 +141,8 @@ module AresMUSH
         return MarkdownPreviewRequestHandler
       when "recentChanges"
         return GetRecentChangesRequestHandler
+      when "recentActivities"
+        return GetRecentActivityRequestHandler
       when "sidebarInfo"
         return GetSidebarInfoRequestHandler
       when "shutdown"
@@ -152,7 +154,7 @@ module AresMUSH
       end
       nil
     end
-    
+
     def self.check_config
       validator = WebsiteConfigValidator.new
       validator.validate

@@ -22,9 +22,9 @@ module AresMUSH
         end
 
         id = Time.now.strftime("%d-%m-%Y-%H-%M")
-        recent_changes = Game.master.recent_changes.delete_if {|change| change['type'] == "motd" && change['data']['class_id'] == id}
-        Game.master.update(recent_changes: recent_changes)
-        Website.add_to_recent_changes(
+        recent_activity = Game.master.recent_activity.delete_if {|change| change['type'] == "motd" && change['data']['class_id'] == id}
+        Game.master.update(recent_activity: recent_activity)
+        Website.add_to_recent_activity(
           'motd',
           Website.format_input_for_html(t('login.motd_announce', :enactor => enactor_name, :message => "")),
           { class_id: id },
