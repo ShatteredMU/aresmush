@@ -1247,11 +1247,23 @@ button {
   padding: 10px !important;
 }
 
+.recent-activity-summary-tool {
+	margin-right: 5px;
+}
+
 .activity-card {
 	padding: 15px;
 	background: #141d2a;
 	border: 1px solid black;
 	margin: 5px;
+}
+
+.activity-card-header{
+	display: flex;
+}
+
+.activity-card-footer {
+	font-size: 85%;
 }
 
 .tab-cover {
