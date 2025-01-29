@@ -195,7 +195,7 @@ module AresMUSH
       Website.add_to_recent_activity(
         'event',
         Website.format_input_for_html(message),
-        { id: event.id, class_id: event.id },
+        { id: event.id, class_id: event.id, icon: 'fa-calendar' },
         enactor.name,
         Website.format_input_for_html(summary)
       )
