@@ -3,8 +3,8 @@ login:
   activity_cron:
     minute:
     - 0
-  allow_creation: true
-  allow_web_registration: true
+  allow_creation: false
+  allow_web_registration: false
   blacklist_cron:
     day:
     - 1
@@ -13,13 +13,13 @@ login:
     - 3
     minute:
     - 0
-  creation_not_allowed_message: Shattered is currently full. See the front page for
-    information about creation.
-  guest_disabled_message: Shattered is currently full. See the front page for information
-    about creation.
+  creation_not_allowed_message: Shattered is not accepting new characters at this time. See the 
+    front page for more information.
+  guest_disabled_message: Shattered is not accepting new characters at this time. See the 
+    front page for more information.
   guest_role: guest
-  login_not_allowed_message: Shattered is currently full. See the front page for information
-    about creation.
+  login_not_allowed_message: Shattered is not accepting new characters at this time. See the 
+    front page for more information.
   notice_cleanup_cron:
     day:
     - 18
