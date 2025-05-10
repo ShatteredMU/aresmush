@@ -1241,6 +1241,53 @@ button {
 	border: solid 1px #5d6168;
 }
 
+.recent-activity-summary {
+	background: #29313e !important;
+	display: block;
+  padding: 10px !important;
+	width: 100%;
+}
+
+.recent-activity-summary-tool {
+	margin-left: 5px;
+}
+
+@media screen and (max-width: 767px) {
+	.recent-activity-summary-tool {
+		margin-top: -25px;
+	}
+}
+
+.activity-card {
+	padding: 15px;
+	background: #141d2a;
+	border: 1px solid black;
+	margin: 5px;
+	display: flex;
+	flex-wrap: wrap;
+
+	.fa {
+		font-size: 150%;
+		margin-top: -7px;
+		padding: 5px 10px;
+	}
+}
+
+.activity-card-header{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.activity-card-mobile-header {
+	display: flex;
+}
+
+.activity-card-footer {
+	font-size: 85%;
+	margin: 10px;
+	flex-basis: 100%;
+}
+
 .tab-cover {
 	font-variant: none;
 	color: #090909;
