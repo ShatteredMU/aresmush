@@ -6,8 +6,8 @@ magic:
   cg_max_spell_points: 35
   cg_max_spell_level: 6
   cg_days_to_choose_spells: 10
-  spell_max: 36
-  days_between_learning_spells: 7
+  spell_max: 50
+  days_between_learning_spells: 1
   item_category: "Luck"
   potion_spell: "None"
   major_schools:
