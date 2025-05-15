@@ -3,10 +3,10 @@ magic:
   magic_attribute: "Magic"
   cg_max_magic_attribute: 4
   cg_spell_max: 8
-  cg_max_spell_points: 50
+  cg_max_spell_points: 35
   cg_max_spell_level: 6
   cg_days_to_choose_spells: 10
-  spell_max: 36
+  spell_max: 50
   days_between_learning_spells: 1
   item_category: "Luck"
   potion_spell: "None"
